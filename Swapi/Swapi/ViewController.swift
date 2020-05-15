@@ -11,7 +11,13 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
   
     @IBOutlet weak var starWarsInformationTableView: UITableView!
+    
     var people = [PeopleData]()
+    var planets = [PlanetData]()
+    var spaceships = [SpaceshipData]()
+    var vehicles = [VehicleData]()
+    var films = [FilmData]()
+    var species = [SpecieData]()
     
     lazy var informationToDisplay = 0
     
