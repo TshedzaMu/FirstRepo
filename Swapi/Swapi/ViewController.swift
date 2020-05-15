@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
   
     @IBOutlet weak var starWarsInformationTableView: UITableView!
-    var people = [PeopleInformation]()
+    var people = [PeopleData]()
     
     lazy var informationToDisplay = 0
     
@@ -21,9 +21,9 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
            starWarsInformationTableView.delegate = self
            starWarsInformationTableView.dataSource = self
            
-           getStarWarsInfromationJSON() {
-               print("Good")
-           }
+           //getStarWarsInfromationJSON() {
+           //    print("Good")
+         //  }
            
        }
        
@@ -47,7 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
             informationToDisplay = 4
            
         default:
-          //  print("Species")
+            print("Species")
             informationToDisplay = 5
             
             
@@ -102,7 +102,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
             
             if error == nil {
                 do {
-                    self.people = try JSONDecoder().decode([PeopleInformation].self, from: data!)
+                    self.people = try JSONDecoder().decode([PeopleData].self, from: data!)
                     
                     DispatchQueue.main.async {
                         completed()

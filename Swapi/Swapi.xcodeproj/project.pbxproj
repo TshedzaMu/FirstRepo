@@ -15,7 +15,12 @@
 		045B07FF246D9A92004EAEED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045B07FD246D9A92004EAEED /* LaunchScreen.storyboard */; };
 		045B080A246D9A92004EAEED /* SwapiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B0809246D9A92004EAEED /* SwapiTests.swift */; };
 		045B0815246D9A92004EAEED /* SwapiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B0814246D9A92004EAEED /* SwapiUITests.swift */; };
-		045B0827246EBA9C004EAEED /* PeopleInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B0826246EBA9C004EAEED /* PeopleInformation.swift */; };
+		045B0827246EBA9C004EAEED /* PeopleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B0826246EBA9C004EAEED /* PeopleData.swift */; };
+		045B0829246F1FAD004EAEED /* PlanetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B0828246F1FAD004EAEED /* PlanetData.swift */; };
+		045B082B246F2045004EAEED /* SpaceshipsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B082A246F2045004EAEED /* SpaceshipsData.swift */; };
+		045B082D246F20D1004EAEED /* VehicleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B082C246F20D1004EAEED /* VehicleData.swift */; };
+		045B082F246F2208004EAEED /* FilmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B082E246F2208004EAEED /* FilmData.swift */; };
+		045B0831246F22F5004EAEED /* SpecieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B0830246F22F5004EAEED /* SpecieData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +55,12 @@
 		045B0810246D9A92004EAEED /* SwapiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwapiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		045B0814246D9A92004EAEED /* SwapiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapiUITests.swift; sourceTree = "<group>"; };
 		045B0816246D9A92004EAEED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		045B0826246EBA9C004EAEED /* PeopleInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleInformation.swift; sourceTree = "<group>"; };
+		045B0826246EBA9C004EAEED /* PeopleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleData.swift; sourceTree = "<group>"; };
+		045B0828246F1FAD004EAEED /* PlanetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetData.swift; sourceTree = "<group>"; };
+		045B082A246F2045004EAEED /* SpaceshipsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceshipsData.swift; sourceTree = "<group>"; };
+		045B082C246F20D1004EAEED /* VehicleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleData.swift; sourceTree = "<group>"; };
+		045B082E246F2208004EAEED /* FilmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmData.swift; sourceTree = "<group>"; };
+		045B0830246F22F5004EAEED /* SpecieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +118,12 @@
 				045B07FB246D9A92004EAEED /* Assets.xcassets */,
 				045B07FD246D9A92004EAEED /* LaunchScreen.storyboard */,
 				045B0800246D9A92004EAEED /* Info.plist */,
-				045B0826246EBA9C004EAEED /* PeopleInformation.swift */,
+				045B0826246EBA9C004EAEED /* PeopleData.swift */,
+				045B0828246F1FAD004EAEED /* PlanetData.swift */,
+				045B082A246F2045004EAEED /* SpaceshipsData.swift */,
+				045B082C246F20D1004EAEED /* VehicleData.swift */,
+				045B082E246F2208004EAEED /* FilmData.swift */,
+				045B0830246F22F5004EAEED /* SpecieData.swift */,
 			);
 			path = Swapi;
 			sourceTree = "<group>";
@@ -263,8 +278,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				045B07F7246D9A92004EAEED /* ViewController.swift in Sources */,
-				045B0827246EBA9C004EAEED /* PeopleInformation.swift in Sources */,
+				045B0827246EBA9C004EAEED /* PeopleData.swift in Sources */,
+				045B082B246F2045004EAEED /* SpaceshipsData.swift in Sources */,
+				045B082F246F2208004EAEED /* FilmData.swift in Sources */,
+				045B0829246F1FAD004EAEED /* PlanetData.swift in Sources */,
 				045B07F3246D9A91004EAEED /* AppDelegate.swift in Sources */,
+				045B0831246F22F5004EAEED /* SpecieData.swift in Sources */,
+				045B082D246F20D1004EAEED /* VehicleData.swift in Sources */,
 				045B07F5246D9A92004EAEED /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,12 +9,9 @@
 import Foundation
 
 
-struct PeopleInformation:Decodable {
+struct PeopleData:Decodable {
     
     let name: String
     let height: Int
     let mass: Int
-   
-    
-    
 }
