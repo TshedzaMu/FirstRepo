@@ -8,15 +8,15 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F43F405F-2874-48E5-B9FF-0A64E9FC6D1B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swapi/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "getSarWarsInfromationJSON(completed:)"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "getStarWarsInfromationJSON(completed:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

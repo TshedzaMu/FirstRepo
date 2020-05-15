@@ -11,31 +11,43 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
   
     @IBOutlet weak var starWarsInformationTableView: UITableView!
-    
-    
     var people = [PeopleInformation]()
+    
+    lazy var informationToDisplay = 0
+    
+    override func viewDidLoad() {
+           super.viewDidLoad()
+          
+           starWarsInformationTableView.delegate = self
+           starWarsInformationTableView.dataSource = self
+           
+           getStarWarsInfromationJSON() {
+               print("Good")
+           }
+           
+       }
+       
     
     @IBAction func searchSegment(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
            print("Planets")
             informationToDisplay = 0
-            case 1:
+        case 1:
             print("ships")
             informationToDisplay = 1
-            case 2:
+        case 2:
            print("vehicles")
             informationToDisplay = 2
-            case 3:
+        case 3:
            print("people")
-            informationToDisplay = 3
-            case 4:
+           informationToDisplay = 3
+        case 4:
            print("films")
             informationToDisplay = 4
            
-            
-            default:
-            print("Species")
+        default:
+          //  print("Species")
             informationToDisplay = 5
             
             
@@ -46,22 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       
-        starWarsInformationTableView.delegate=self
-        starWarsInformationTableView.dataSource=self
-        
-        getSarWarsInfromationJSON {
-            print("Good")
-        }
-        
-    }
-    
-    lazy var informationToDisplay = 0
-    
-    
-   
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
       }
@@ -97,7 +94,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
       }
     
     
-    func getSarWarsInfromationJSON(completed: @escaping () -> ()){
+    func getStarWarsInfromationJSON(completed: @escaping () -> ()){
         
         let url = URL(string: "https://swapi.dev/api/people/")
         
@@ -125,9 +122,23 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        
-        
-        
+        var cellHeight = CGFloat()
+              
+              if informationToDisplay == 0 {
+                cellHeight = 150
+              } else if informationToDisplay == 1 {
+                  cellHeight = 150
+              } else if informationToDisplay == 2 {
+                  cellHeight = 150
+              } else if informationToDisplay == 3 {
+                cellHeight = 150
+              } else if informationToDisplay == 4 {
+                   cellHeight = 150
+              } else if informationToDisplay == 5 {
+                  cellHeight = 150
+              }
+                return cellHeight
+
     }
     
     
