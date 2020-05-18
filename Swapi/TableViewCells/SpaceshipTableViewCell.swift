@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SpaceshipCollectionViewCell: UICollectionViewCell {
+class SpaceshipTableViewCell: UITableViewCell {
     let name: String = ""
     let manufucturer: String = ""
     let passengers: Int = 0

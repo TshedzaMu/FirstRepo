@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilmCollectionViewCell: UICollectionViewCell {
+class FilmTableViewCell: UITableViewCell {
     
     let tittle:String = ""
     let episode_id:Int = 0

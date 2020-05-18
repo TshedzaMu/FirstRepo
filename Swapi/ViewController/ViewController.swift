@@ -10,14 +10,11 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
   
-    @IBOutlet weak var starWarsInformationTableView: UITableView!
+
+       fileprivate var peopleViewModel = PeopleViewModel()
     
-    var people = [PeopleData]()
-    var planets = [PlanetData]()
-    var spaceships = [SpaceshipData]()
-    var vehicles = [VehicleData]()
-    var films = [FilmData]()
-    var species = [SpecieData]()
+    
+    @IBOutlet weak var starWarsInformationTableView: UITableView!
     
     lazy var informationToDisplay = 0
     
@@ -26,10 +23,10 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
           
            starWarsInformationTableView.delegate = self
            starWarsInformationTableView.dataSource = self
-           
-           //getStarWarsInfromationJSON() {
-           //    print("Good")
-         //  }
+        
+        peopleViewModel.getData(){
+            
+        }
            
        }
        
@@ -66,64 +63,62 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return peopleViewModel.peopleData.count
+    
+         // return searchViewModel.data.count
       }
       
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//        var cell: UITableViewCell!
+//
+//        if informationToDisplay == 0
+//        {
+//            cell = tableView.dequeueReusableCell(withIdentifier: "CID_PlanetCell", for: indexPath) as! PlanetTableViewCell
+//
+//
+//
+//        } else if informationToDisplay == 1
+//        {
+//             cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpaceshipCell", for: indexPath) as! SpaceshipTableViewCell
+//        }else if informationToDisplay == 2
+//        {
+//             cell = tableView.dequeueReusableCell(withIdentifier: "CID_VehicleCell", for: indexPath) as! VehicleTableViewCell
+//        }
+//        else if informationToDisplay == 3
+//        {
+//             cell = tableView.dequeueReusableCell(withIdentifier: "CID_PeopleCell", for: indexPath) as! PeopleTableViewCell
+//             // cell.PeopleNameLabel.text = "Tshedza"
+//
+//
+//
+//
+//
+//        }else if informationToDisplay == 4
+//        {
+//             cell = tableView.dequeueReusableCell(withIdentifier: "CID_FilmCell", for: indexPath) as! FilmTableViewCell
+//
+//
+//
+//        }else if informationToDisplay == 5
+//        {
+//             cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpecieCell", for: indexPath) as! SpaceshipTableViewCell
+//        }
         
-        var cell = UITableViewCell()
+        var  cell = tableView.dequeueReusableCell(withIdentifier: "CID_PeopleCell", for: indexPath) as! PeopleTableViewCell
         
-        if informationToDisplay == 0
-        {
-            cell = tableView.dequeueReusableCell(withIdentifier: "CID_PlanetCell", for: indexPath)
-            
-        } else if informationToDisplay == 1
-        {
-             cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpaceshipCell", for: indexPath)
-        }else if informationToDisplay == 2
-        {
-             cell = tableView.dequeueReusableCell(withIdentifier: "CID_VehicleCell", for: indexPath)
-        }
-        else if informationToDisplay == 3
-        {
-             cell = tableView.dequeueReusableCell(withIdentifier: "CID_PeopleCell", for: indexPath)
-        }else if informationToDisplay == 4
-        {
-             cell = tableView.dequeueReusableCell(withIdentifier: "CID_FilmCell", for: indexPath)
-        }else if informationToDisplay == 5
-        {
-             cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpecieCell", for: indexPath)
-        }
+        cell.PeopleNameLabel.text = "Name: " + peopleViewModel.peopleData[indexPath.row].name
+        cell.PeopleHeightLabel.text = "Height: " + peopleViewModel.peopleData[indexPath.row].height
+        cell.PeopleMassLabel.text = "Mass: "+peopleViewModel.peopleData[indexPath.row].mass
+       // cell.PeopleNameLabel.text = peopleViewModel.peopleData[indexPath.row].name
+        
         
         return cell
         
       }
     
     
-    func getStarWarsInfromationJSON(completed: @escaping () -> ()){
-        
-        let url = URL(string: "https://swapi.dev/api/people/")
-        
-        URLSession.shared.dataTask(with: url!) {(data, response, error) in
-            
-            if error == nil {
-                do {
-                    self.people = try JSONDecoder().decode([PeopleData].self, from: data!)
-                    
-                    DispatchQueue.main.async {
-                        completed()
-                    }
-                    
-                    
-                } catch {
-                    print("JSON Error")
-                }
-                
-            }
-            
-            
-        }.resume()
-    }
+
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
@@ -146,7 +141,6 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                 return cellHeight
 
     }
-    
-    
+  
 }
 

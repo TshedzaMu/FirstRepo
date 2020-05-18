@@ -10,7 +10,10 @@ import Foundation
 
 import UIKit
 
-class PlanetCollectionViewCell : UICollectionViewCell{
+class PlanetTableViewCell : UITableViewCell{
+    
+    
+    
     
     let  name: String = ""
     let  rotation_Period: String = ""
