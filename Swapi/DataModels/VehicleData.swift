@@ -8,15 +8,10 @@
 
 import Foundation
 
-
-struct VehicleResults: Codable {
-    var results: [VehicleData]
-}
-
 struct VehicleData: Codable{
     var name:String
     var model:String
-    var manufucturer:String
-    var cost_in_credits:String
-    var crew:String
+    var manufucturer:String?
+    var cost_in_credits:String?
+    var crew:String?
 }

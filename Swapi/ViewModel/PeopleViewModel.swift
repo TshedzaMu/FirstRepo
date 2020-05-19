@@ -17,14 +17,14 @@ func getData(completed: @escaping () ->())  {
 
     let url = URL(string: "https://swapi.dev/api/people")
     let sessionCongfig = URLSession.shared
-    let task: Void = sessionCongfig.dataTask(with: url!) { (data, response, error) in
+    let _: Void = sessionCongfig.dataTask(with: url!) { (data, response, error) in
     if let data = data {
             print(data)
-         //            print(response) // Response even return the URL that was called
+                //print(response) // Response even return the URL that was called
             do {
                          // JSON Parsing
                 let jsonData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                    var userDataArr = jsonData?["results"] as!  [[String: Any]]
+                let userDataArr = jsonData?["results"] as!  [[String: Any]]
 
                     //  print(userDataArr)
                     for jsonDetailData in userDataArr {
@@ -42,7 +42,7 @@ func getData(completed: @escaping () ->())  {
                          }
 
                      } catch {
-                       //  print(error)
+                         print(error)
                      }
                  }
              }.resume()

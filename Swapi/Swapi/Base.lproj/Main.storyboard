@@ -29,7 +29,7 @@
                                     <segment title="Species"/>
                                 </segments>
                                 <connections>
-                                    <action selector="searchSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="nfc-bx-33J"/>
+                                    <action selector="searchSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="d3m-pA-Pnw"/>
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fv9-jS-VyW">
@@ -134,35 +134,35 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Manufucturer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thM-o8-Mji">
-                                                    <rect key="frame" x="21" y="19" width="104" height="21"/>
+                                                    <rect key="frame" x="21" y="19" width="373" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vehicle Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHZ-S0-1Go">
-                                                    <rect key="frame" x="20" y="0.0" width="105" height="21"/>
+                                                    <rect key="frame" x="20" y="0.0" width="383" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Model" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbJ-jf-QWT">
-                                                    <rect key="frame" x="21" y="40" width="48" height="21"/>
+                                                    <rect key="frame" x="21" y="40" width="373" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="If2-4N-9xB">
-                                                    <rect key="frame" x="21" y="62" width="36" height="21"/>
+                                                    <rect key="frame" x="21" y="62" width="373" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of crew" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saK-6w-Taf">
-                                                    <rect key="frame" x="20" y="82" width="123" height="21"/>
+                                                    <rect key="frame" x="20" y="82" width="383" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -171,7 +171,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="VehiclenameLabel" destination="dHZ-S0-1Go" id="xjz-3d-Jo3"/>
+                                            <outlet property="VehicleCostLabel" destination="If2-4N-9xB" id="iA3-tB-F4J"/>
+                                            <outlet property="VehicleManufucturerLabel" destination="thM-o8-Mji" id="shM-Wf-KO4"/>
+                                            <outlet property="VehicleModelLabel" destination="wbJ-jf-QWT" id="Yad-vN-ydd"/>
+                                            <outlet property="VehicleNumberOfCrewLabel" destination="saK-6w-Taf" id="w4g-nz-Cqp"/>
+                                            <outlet property="vehicleNameLabel" destination="dHZ-S0-1Go" id="XTJ-lX-a3U"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CID_PeopleCell" rowHeight="99" id="z8a-yM-BC0" customClass="PeopleTableViewCell" customModule="Swapi" customModuleProvider="target">

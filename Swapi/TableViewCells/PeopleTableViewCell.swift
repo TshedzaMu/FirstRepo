@@ -10,16 +10,10 @@ import UIKit
 
 class PeopleTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var PeopleNameLabel: UILabel!
-    
-    @IBOutlet weak var PeopleHeightLabel: UILabel!
-    
-    
-    @IBOutlet weak var PeopleMassLabel: UILabel!
-    
-    
+    @IBOutlet weak var peopleNameLabel: UILabel!
+    @IBOutlet weak var peopleHeightLabel: UILabel!
+    @IBOutlet weak var peopleMassLabel: UILabel!
     @IBOutlet weak var peopleGenderLabel: UILabel!
-    
     @IBOutlet weak var peopleNirthyearLabel: UILabel!
     
     

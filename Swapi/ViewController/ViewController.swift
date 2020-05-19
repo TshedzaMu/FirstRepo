@@ -8,10 +8,22 @@
 
 import UIKit
 
+
+
+enum SelectedSegment:Int {
+    case starWarsPlanets = 0
+    case starWarsSpaceships
+    case starWarsVehicles
+    case starWarspeople
+    case starWarsFilms
+    case starWarsSpecies
+}
+
 class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
   
 
-       fileprivate var peopleViewModel = PeopleViewModel()
+    fileprivate var peopleViewModel = PeopleViewModel()
+    fileprivate var vehicleViewModel = VehicleViewModel()
     
     
     @IBOutlet weak var starWarsInformationTableView: UITableView!
@@ -24,122 +36,133 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
            starWarsInformationTableView.delegate = self
            starWarsInformationTableView.dataSource = self
         
-        peopleViewModel.getData(){
-            
-        }
+              vehicleViewModel.getData(){
+                    print("Vehicle Successful")
+              }
+
+
+
+            peopleViewModel.getData(){
+                print("People Successful")
+            }
+        
+      
+      
            
        }
-       
+
     
     @IBAction func searchSegment(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-           print("Planets")
-            informationToDisplay = 0
-        case 1:
-            print("ships")
-            informationToDisplay = 1
-        case 2:
-           print("vehicles")
-            informationToDisplay = 2
-        case 3:
-           print("people")
-           informationToDisplay = 3
-        case 4:
-           print("films")
-            informationToDisplay = 4
-           
-        default:
-            print("Species")
-            informationToDisplay = 5
-            
-            
-        }
+       informationToDisplay = sender.selectedSegmentIndex
         starWarsInformationTableView.reloadData()
-        
-        
     }
     
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return peopleViewModel.peopleData.count
-    
-         // return searchViewModel.data.count
-      }
+        var number = 0
+        
+        if (informationToDisplay == SelectedSegment.starWarsPlanets.rawValue) {
+            number = 10
+                               
+        } else if  (informationToDisplay == SelectedSegment.starWarsSpaceships.rawValue) {
+            number = 5
+                 
+        } else if (informationToDisplay == SelectedSegment.starWarsVehicles.rawValue)  {
+                number = vehicleViewModel.vehicleData.count
+                       
+        } else if  (informationToDisplay == SelectedSegment.starWarspeople.rawValue)  {
+                number = peopleViewModel.peopleData.count
+               
+            
+        } else if (informationToDisplay == SelectedSegment.starWarsFilms.rawValue)  {
+            number = 10
+            
+        } else if (informationToDisplay == SelectedSegment.starWarsSpecies.rawValue)  {
+             number = 10
+        }
+                          
+       return number
+
+    }
       
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        var cell: UITableViewCell!
-//
-//        if informationToDisplay == 0
-//        {
-//            cell = tableView.dequeueReusableCell(withIdentifier: "CID_PlanetCell", for: indexPath) as! PlanetTableViewCell
-//
-//
-//
-//        } else if informationToDisplay == 1
-//        {
-//             cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpaceshipCell", for: indexPath) as! SpaceshipTableViewCell
-//        }else if informationToDisplay == 2
-//        {
-//             cell = tableView.dequeueReusableCell(withIdentifier: "CID_VehicleCell", for: indexPath) as! VehicleTableViewCell
-//        }
-//        else if informationToDisplay == 3
-//        {
-//             cell = tableView.dequeueReusableCell(withIdentifier: "CID_PeopleCell", for: indexPath) as! PeopleTableViewCell
-//             // cell.PeopleNameLabel.text = "Tshedza"
-//
-//
-//
-//
-//
-//        }else if informationToDisplay == 4
-//        {
-//             cell = tableView.dequeueReusableCell(withIdentifier: "CID_FilmCell", for: indexPath) as! FilmTableViewCell
-//
-//
-//
-//        }else if informationToDisplay == 5
-//        {
-//             cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpecieCell", for: indexPath) as! SpaceshipTableViewCell
-//        }
-        
-        var  cell = tableView.dequeueReusableCell(withIdentifier: "CID_PeopleCell", for: indexPath) as! PeopleTableViewCell
-        
-        cell.PeopleNameLabel.text = "Name: " + peopleViewModel.peopleData[indexPath.row].name
-        cell.PeopleHeightLabel.text = "Height: " + peopleViewModel.peopleData[indexPath.row].height
-        cell.PeopleMassLabel.text = "Mass: "+peopleViewModel.peopleData[indexPath.row].mass
-       // cell.PeopleNameLabel.text = peopleViewModel.peopleData[indexPath.row].name
         
         
-        return cell
-        
-      }
-    
-    
+        if (informationToDisplay == SelectedSegment.starWarsPlanets.rawValue) {
+            let  cell = tableView.dequeueReusableCell(withIdentifier: "CID_PlanetCell", for: indexPath) as! PlanetTableViewCell
+            
+            return cell
+                        
+              } else if  (informationToDisplay == SelectedSegment.starWarsSpaceships.rawValue) {
+           let  cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpaceshipCell", for: indexPath) as! SpaceshipTableViewCell
+            
+            return cell
+                   
+              } else if (informationToDisplay == SelectedSegment.starWarsVehicles.rawValue)  {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "CID_VehicleCell", for: indexPath) as! VehicleTableViewCell
+            
+            cell.vehicleNameLabel.text = "Name: " + vehicleViewModel.vehicleData[indexPath.row].name
+            cell.vehicleManufucturerLabel.text = "Manufucturer: " + vehicleViewModel.vehicleData[indexPath.row].manufucturer!
+            cell.vehicleModelLabel.text = "Model: " + vehicleViewModel.vehicleData[indexPath.row].model
+            cell.vehicleCostLabel.text = "Cost: " + vehicleViewModel.vehicleData[indexPath.row].cost_in_credits!
+            cell.vehicleNumberOfCrewLabel.text = "Number of crew: " + vehicleViewModel.vehicleData[indexPath.row].crew!
+            
+            
+            
+               return cell
+                
+              } else if  (informationToDisplay == SelectedSegment.starWarspeople.rawValue)  {
+            let  cell = tableView.dequeueReusableCell(withIdentifier: "CID_PeopleCell", for: indexPath) as! PeopleTableViewCell
+            
+            
+                cell.peopleNameLabel.text = "Name: " + peopleViewModel.peopleData[indexPath.row].name
+                cell.peopleHeightLabel.text = "Height: " + peopleViewModel.peopleData[indexPath.row].height
+                cell.peopleMassLabel.text = "Mass: "+peopleViewModel.peopleData[indexPath.row].mass
+                         // cell.PeopleNameLabel.text = peopleViewModel.peopleData[indexPath.row].name
+                return cell
 
-    
+                 
+              } else if (informationToDisplay == SelectedSegment.starWarsFilms.rawValue)  {
+                       let cell = tableView.dequeueReusableCell(withIdentifier: "CID_FilmCell", for: indexPath) as! FilmTableViewCell
+            
+            return cell
+                  
+              } else if (informationToDisplay == SelectedSegment.starWarsSpecies.rawValue)  {
+                   let cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpecieCell", for: indexPath) as! SpaceshipTableViewCell
+            return cell
+                   
+              }
+
+         return UITableViewCell()
+        
+    }
+        
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         var cellHeight = CGFloat()
               
-              if informationToDisplay == 0 {
+        if informationToDisplay == SelectedSegment.starWarsPlanets.rawValue {
                 cellHeight = 150
-              } else if informationToDisplay == 1 {
+                  
+        } else if informationToDisplay == SelectedSegment.starWarsSpaceships.rawValue  {
                   cellHeight = 150
-              } else if informationToDisplay == 2 {
+             
+        } else if informationToDisplay == SelectedSegment.starWarsVehicles.rawValue  {
                   cellHeight = 150
-              } else if informationToDisplay == 3 {
+          
+        } else if informationToDisplay == SelectedSegment.starWarspeople.rawValue  {
                 cellHeight = 150
-              } else if informationToDisplay == 4 {
+           
+        } else if informationToDisplay == SelectedSegment.starWarsFilms.rawValue  {
                    cellHeight = 150
-              } else if informationToDisplay == 5 {
+            
+        } else if informationToDisplay == SelectedSegment.starWarsSpecies.rawValue  {
                   cellHeight = 150
-              }
-                return cellHeight
-
+             
+        }
+        return cellHeight
     }
   
 }

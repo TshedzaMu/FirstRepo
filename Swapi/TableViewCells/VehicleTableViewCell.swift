@@ -10,7 +10,11 @@ import UIKit
 
 class VehicleTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var VehiclenameLabel: UILabel!
+     @IBOutlet weak var vehicleNameLabel: UILabel!
+     @IBOutlet weak var vehicleManufucturerLabel: UILabel!
+     @IBOutlet weak var vehicleModelLabel: UILabel!
+     @IBOutlet weak var vehicleCostLabel: UILabel!
+     @IBOutlet weak var vehicleNumberOfCrewLabel: UILabel!
     
     
 }
