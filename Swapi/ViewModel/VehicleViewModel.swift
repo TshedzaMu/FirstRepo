@@ -17,8 +17,6 @@ class VehicleViewModel {
     func getData(completed: @escaping () ->())  {
 
         let url = URL(string: "https://swapi.dev/api/vehicles")
-        var peopleData = [VehicleData]()
-
         let sessionCongfig = URLSession.shared
         let _: Void = sessionCongfig.dataTask(with: url!) { (data, response, error) in
         if let data = data {

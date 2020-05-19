@@ -13,7 +13,7 @@ struct FilmResults:Codable {
 }
 
 struct FilmData:Codable {
-    var tittle:String
+    var title:String
     var episode_id:Int
     var director:String
     var producer:String

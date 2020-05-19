@@ -17,6 +17,7 @@ struct SpaceshipData: Codable{
     
     var name: String
     var manufucturer: String
-    var passengers: Int
-    var startship_class: String
+    var crew: String
+    var passengers: String
+    var cargo_capacity :String
 }

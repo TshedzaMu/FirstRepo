@@ -10,8 +10,8 @@ import UIKit
 
 class FilmTableViewCell: UITableViewCell {
     
-    let tittle:String = ""
-    let episode_id:Int = 0
-    let director:String = ""
-    let producer:String = ""
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var movieIdLabel: UILabel!
+    @IBOutlet weak var movieDirectorNameLabel: UILabel!
+    @IBOutlet weak var movieProducerNameLabel: UILabel!
 }

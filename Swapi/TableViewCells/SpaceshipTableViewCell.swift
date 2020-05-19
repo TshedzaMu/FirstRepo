@@ -9,9 +9,9 @@
 import UIKit
 
 class SpaceshipTableViewCell: UITableViewCell {
-    let name: String = ""
-    let manufucturer: String = ""
-    let passengers: Int = 0
-    let startship_class: String = ""
-    
+     @IBOutlet weak var spaceshipNameLabel: UILabel!
+     @IBOutlet weak var spaceshipManufucturerLabel: UILabel!
+     @IBOutlet weak var spaceshipPassengerLabel: UILabel!
+     @IBOutlet weak var spaceshipNumberOfCrewLabel: UILabel!
+     @IBOutlet weak var spaceshipCargoCapacityLabel: UILabel!
 }
