@@ -9,16 +9,6 @@
 import UIKit
 
 
-
-enum SelectedSegment:Int {
-    case starWarsPlanets = 0
-    case starWarsSpaceships
-    case starWarsVehicles
-    case starWarspeople
-    case starWarsFilms
-    case starWarsSpecies
-}
-
 class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
   
 
@@ -27,7 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     fileprivate var spaceshipViewModel = SpaceshipViewModel()
     fileprivate var filmViewModel = FilmViewModel()
     fileprivate var planetViewModel = PlanetViewModel()
-     fileprivate var specieViewModel = SpecieViewModel()
+    fileprivate var specieViewModel = SpecieViewModel()
     
     
     @IBOutlet weak var starWarsInformationTableView: UITableView!
@@ -46,38 +36,53 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
        informationToDisplay = sender.selectedSegmentIndex
          starWarsInformationTableView.reloadData()
         if informationToDisplay == SelectedSegment.starWarsPlanets.rawValue {
+           // planetViewModel.planetData == nil
+            startActivityIndicator()
             planetViewModel.getData(){
             print("planets Successful")
+            self.stopActivityIndicator()
             self.starWarsInformationTableView.reloadData()
+        
             }
                         
         } else if informationToDisplay == SelectedSegment.starWarsSpaceships.rawValue  {
+            startActivityIndicator()
+            
             spaceshipViewModel.getData(){
             print("Spaceship Successful")
+            self.stopActivityIndicator()
             self.starWarsInformationTableView.reloadData()
             }
                    
         } else if informationToDisplay == SelectedSegment.starWarsVehicles.rawValue  {
+            startActivityIndicator()
             vehicleViewModel.getData(){
             print("Vehicle Successful")
+            self.stopActivityIndicator()
             self.starWarsInformationTableView.reloadData()
             }
                 
         } else if informationToDisplay == SelectedSegment.starWarspeople.rawValue  {
+            startActivityIndicator()
             peopleViewModel.getData(){
             print("People Successful")
+            self.stopActivityIndicator()
             self.starWarsInformationTableView.reloadData()
             }
                                 
         } else if informationToDisplay == SelectedSegment.starWarsFilms.rawValue  {
+            startActivityIndicator()
             filmViewModel.getData(){
             print("film Successful")
+            self.stopActivityIndicator()
             self.starWarsInformationTableView.reloadData()
             }
                   
         } else if informationToDisplay == SelectedSegment.starWarsSpecies.rawValue  {
-           specieViewModel.getData(){
+            startActivityIndicator()
+            specieViewModel.getData(){
             print("Species Successful")
+            self.stopActivityIndicator()
             self.starWarsInformationTableView.reloadData()
             }
         }
@@ -149,8 +154,9 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         let cell = tableView.dequeueReusableCell(withIdentifier: "CID_PeopleCell", for: indexPath) as! PeopleTableViewCell
             cell.peopleNameLabel.text = "Name: " + peopleViewModel.peopleData[indexPath.row].name
             cell.peopleHeightLabel.text = "Height: " + peopleViewModel.peopleData[indexPath.row].height
-            cell.peopleMassLabel.text = "Mass: "+peopleViewModel.peopleData[indexPath.row].mass
-                         // cell.PeopleNameLabel.text = peopleViewModel.peopleData[indexPath.row].name
+            cell.peopleMassLabel.text = "Mass: " + peopleViewModel.peopleData[indexPath.row].mass
+            cell.peopleGenderLabel.text = "Gender:" + peopleViewModel.peopleData[indexPath.row].gender
+            cell.peopleNirthyearLabel.text = "Birth year:" + peopleViewModel.peopleData[indexPath.row].birthYear
         return cell
 
                  
@@ -158,10 +164,10 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CID_FilmCell", for: indexPath) as! FilmTableViewCell
-         cell.movieTitleLabel.text = "Film title: " + filmViewModel.filmData[indexPath.row].title
-         cell.movieIdLabel.text = "Film number: \(filmViewModel.filmData[indexPath.row].episode_id)"
-         cell.movieDirectorNameLabel.text = "Director: " + filmViewModel.filmData[indexPath.row].director
-         cell.movieProducerNameLabel.text = "Producer: " + filmViewModel.filmData[indexPath.row].producer
+            cell.movieTitleLabel.text = "Film title: " + filmViewModel.filmData[indexPath.row].title
+            cell.movieIdLabel.text = "Film number: \(filmViewModel.filmData[indexPath.row].episode_id)"
+            cell.movieDirectorNameLabel.text = "Director: " + filmViewModel.filmData[indexPath.row].director
+            cell.movieProducerNameLabel.text = "Producer: " + filmViewModel.filmData[indexPath.row].producer
       return cell
                   
     } else if (informationToDisplay == SelectedSegment.starWarsSpecies.rawValue)  {

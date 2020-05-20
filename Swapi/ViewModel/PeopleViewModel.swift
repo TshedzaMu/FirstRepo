@@ -35,7 +35,9 @@ func getData(completed: @escaping () ->())  {
                         let name = jsonDetailData["name"] as! String
                         let height = jsonDetailData["height"] as! String
                         let  mass = jsonDetailData["mass"] as! String
-                        let tempData = PeopleData(name: name, height: height, mass: mass)
+                        let  gender = jsonDetailData["gender"] as! String
+                        let  birthYear = jsonDetailData["birth_year"] as! String
+                        let tempData = PeopleData(name: name, height: height, mass: mass,gender:gender,birthYear: birthYear )
                         self.peopleData.append(tempData)
                             print("tempdata",tempData)
                              }

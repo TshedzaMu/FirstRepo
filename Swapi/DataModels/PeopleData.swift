@@ -8,9 +8,11 @@
 
 import Foundation
 
-struct PeopleData: Codable {
+struct PeopleData{
     
     var name: String
     var height: String
     var mass: String
+    var gender:String
+    var birthYear:String
 }

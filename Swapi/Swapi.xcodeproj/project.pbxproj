@@ -33,6 +33,8 @@
 		045B088B24749187004EAEED /* FilmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B088A24749187004EAEED /* FilmViewModel.swift */; };
 		045D9FEF247526F10085D850 /* PlanetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D9FEE247526F10085D850 /* PlanetViewModel.swift */; };
 		045D9FF1247530270085D850 /* SpecieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D9FF0247530270085D850 /* SpecieViewModel.swift */; };
+		045D9FF424754B010085D850 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D9FF324754B010085D850 /* AppUtility.swift */; };
+		045D9FF624754B370085D850 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D9FF524754B370085D850 /* AppConstant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		045B088A24749187004EAEED /* FilmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmViewModel.swift; sourceTree = "<group>"; };
 		045D9FEE247526F10085D850 /* PlanetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewModel.swift; sourceTree = "<group>"; };
 		045D9FF0247530270085D850 /* SpecieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewModel.swift; sourceTree = "<group>"; };
+		045D9FF324754B010085D850 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
+		045D9FF524754B370085D850 /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 		045B07E6246D9A91004EAEED = {
 			isa = PBXGroup;
 			children = (
+				045D9FF224754AC70085D850 /* Reachability */,
 				045B088324732684004EAEED /* ViewModel */,
 				045B088224732641004EAEED /* ViewController */,
 				045B08812473254A004EAEED /* TableViewCells */,
@@ -212,6 +217,15 @@
 				045D9FF0247530270085D850 /* SpecieViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		045D9FF224754AC70085D850 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				045D9FF324754B010085D850 /* AppUtility.swift */,
+				045D9FF524754B370085D850 /* AppConstant.swift */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +373,8 @@
 				045B083D246F2A00004EAEED /* SpecieTableViewCell.swift in Sources */,
 				045B082F246F2208004EAEED /* FilmData.swift in Sources */,
 				045B0829246F1FAD004EAEED /* PlanetData.swift in Sources */,
+				045D9FF624754B370085D850 /* AppConstant.swift in Sources */,
+				045D9FF424754B010085D850 /* AppUtility.swift in Sources */,
 				045B083B246F2991004EAEED /* FilmTableViewCell.swift in Sources */,
 				045B07F3246D9A91004EAEED /* AppDelegate.swift in Sources */,
 				045B0831246F22F5004EAEED /* SpecieData.swift in Sources */,
