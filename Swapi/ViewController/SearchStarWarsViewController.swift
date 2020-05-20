@@ -9,15 +9,10 @@
 import UIKit
 
 
-class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
-  
+class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
 
-    fileprivate var peopleViewModel = PeopleViewModel()
-    fileprivate var vehicleViewModel = VehicleViewModel()
-    fileprivate var spaceshipViewModel = SpaceshipViewModel()
-    fileprivate var filmViewModel = FilmViewModel()
-    fileprivate var planetViewModel = PlanetViewModel()
-    fileprivate var specieViewModel = SpecieViewModel()
+    
+      fileprivate var searchStarWarsViewModel = SearchStarWarsViewModel()
     
     
     @IBOutlet weak var starWarsInformationTableView: UITableView!
@@ -29,6 +24,14 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
           
            starWarsInformationTableView.delegate = self
            starWarsInformationTableView.dataSource = self
+        
+            startActivityIndicator()
+        searchStarWarsViewModel.getData(searchType:"planets"){
+            print("planets Successful")
+            self.stopActivityIndicator()
+            self.starWarsInformationTableView.reloadData()
+        
+            }
        }
 
     
@@ -36,19 +39,22 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
        informationToDisplay = sender.selectedSegmentIndex
          starWarsInformationTableView.reloadData()
         if informationToDisplay == SelectedSegment.starWarsPlanets.rawValue {
-           // planetViewModel.planetData == nil
-            startActivityIndicator()
-            planetViewModel.getData(){
-            print("planets Successful")
-            self.stopActivityIndicator()
-            self.starWarsInformationTableView.reloadData()
-        
+    
+            if searchStarWarsViewModel.planetData != nil{
+                  self.starWarsInformationTableView.reloadData()
+            }else{
+                startActivityIndicator()
+                searchStarWarsViewModel.getData(searchType:"planets"){
+                print("planets Successful")
+                self.stopActivityIndicator()
+
+                }
             }
-                        
+            
         } else if informationToDisplay == SelectedSegment.starWarsSpaceships.rawValue  {
             startActivityIndicator()
             
-            spaceshipViewModel.getData(){
+            searchStarWarsViewModel.getData(searchType:"starships"){
             print("Spaceship Successful")
             self.stopActivityIndicator()
             self.starWarsInformationTableView.reloadData()
@@ -56,7 +62,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                    
         } else if informationToDisplay == SelectedSegment.starWarsVehicles.rawValue  {
             startActivityIndicator()
-            vehicleViewModel.getData(){
+            searchStarWarsViewModel.getData(searchType:"vehicles"){
             print("Vehicle Successful")
             self.stopActivityIndicator()
             self.starWarsInformationTableView.reloadData()
@@ -64,7 +70,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                 
         } else if informationToDisplay == SelectedSegment.starWarspeople.rawValue  {
             startActivityIndicator()
-            peopleViewModel.getData(){
+            searchStarWarsViewModel.getData(searchType:"people"){
             print("People Successful")
             self.stopActivityIndicator()
             self.starWarsInformationTableView.reloadData()
@@ -72,7 +78,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                                 
         } else if informationToDisplay == SelectedSegment.starWarsFilms.rawValue  {
             startActivityIndicator()
-            filmViewModel.getData(){
+            searchStarWarsViewModel.getData(searchType:"films"){
             print("film Successful")
             self.stopActivityIndicator()
             self.starWarsInformationTableView.reloadData()
@@ -80,7 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                   
         } else if informationToDisplay == SelectedSegment.starWarsSpecies.rawValue  {
             startActivityIndicator()
-            specieViewModel.getData(){
+            searchStarWarsViewModel.getData(searchType:"species"){
             print("Species Successful")
             self.stopActivityIndicator()
             self.starWarsInformationTableView.reloadData()
@@ -93,22 +99,22 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         var number = 0
         
         if (informationToDisplay == SelectedSegment.starWarsPlanets.rawValue) {
-            number = planetViewModel.planetData.count
+            number = searchStarWarsViewModel.planetData.count
                                
         } else if  (informationToDisplay == SelectedSegment.starWarsSpaceships.rawValue) {
-            number = spaceshipViewModel.spaceshipData.count
+            number = searchStarWarsViewModel.spaceshipData.count
                  
         } else if (informationToDisplay == SelectedSegment.starWarsVehicles.rawValue)  {
-                number = vehicleViewModel.vehicleData.count
+                number = searchStarWarsViewModel.vehicleData.count
                        
         } else if  (informationToDisplay == SelectedSegment.starWarspeople.rawValue)  {
-                number = peopleViewModel.peopleData.count
+                number = searchStarWarsViewModel.peopleData.count
     
         } else if (informationToDisplay == SelectedSegment.starWarsFilms.rawValue)  {
-            number = filmViewModel.filmData.count
+            number = searchStarWarsViewModel.filmData.count
             
         } else if (informationToDisplay == SelectedSegment.starWarsSpecies.rawValue)  {
-            number = specieViewModel.specieData.count
+            number = searchStarWarsViewModel.specieData.count
         }
                           
        return number
@@ -119,11 +125,11 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         
     if (informationToDisplay == SelectedSegment.starWarsPlanets.rawValue) {
         let  cell = tableView.dequeueReusableCell(withIdentifier: "CID_PlanetCell", for: indexPath) as! PlanetTableViewCell
-         cell.palentNameLabel.text = "Planet name: " + planetViewModel.planetData[indexPath.row].name
-         cell.planetRotationPeriodLabel.text = "Rotation period " + planetViewModel.planetData[indexPath.row].rotation_Period
-         cell.planetDiameterLabel.text = "Diameter: " + planetViewModel.planetData[indexPath.row].rotation_Period
-         cell.planetClimateLabel.text = "Cliamte: " + planetViewModel.planetData[indexPath.row].diameter
-         cell.planetPopulationLabel.text = "Population: " + planetViewModel.planetData[indexPath.row].population
+         cell.palentNameLabel.text = "Planet name: " + searchStarWarsViewModel.planetData[indexPath.row].name
+         cell.planetRotationPeriodLabel.text = "Rotation period " + searchStarWarsViewModel.planetData[indexPath.row].rotation_Period
+         cell.planetDiameterLabel.text = "Diameter: " + searchStarWarsViewModel.planetData[indexPath.row].rotation_Period
+         cell.planetClimateLabel.text = "Cliamte: " + searchStarWarsViewModel.planetData[indexPath.row].diameter
+         cell.planetPopulationLabel.text = "Population: " + searchStarWarsViewModel.planetData[indexPath.row].population
             
       return cell
                         
@@ -131,32 +137,32 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         
         
         let  cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpaceshipCell", for: indexPath) as! SpaceshipTableViewCell
-            cell.spaceshipNameLabel.text = "Name " + spaceshipViewModel.spaceshipData[indexPath.row].name
-            cell.spaceshipManufucturerLabel.text = "Manufucturer: " + spaceshipViewModel.spaceshipData[indexPath.row].manufucturer
-            cell.spaceshipNumberOfCrewLabel.text = "Crew number: " + spaceshipViewModel.spaceshipData[indexPath.row].crew
-            cell.spaceshipPassengerLabel.text = "Number of passengers: " + spaceshipViewModel.spaceshipData[indexPath.row].passengers
-            cell.spaceshipCargoCapacityLabel.text = "Cargo capacity: " + spaceshipViewModel.spaceshipData[indexPath.row].cargo_capacity
+            cell.spaceshipNameLabel.text = "Name " + searchStarWarsViewModel.spaceshipData[indexPath.row].name
+            cell.spaceshipManufucturerLabel.text = "Manufucturer: " + searchStarWarsViewModel.spaceshipData[indexPath.row].manufucturer
+            cell.spaceshipNumberOfCrewLabel.text = "Crew number: " + searchStarWarsViewModel.spaceshipData[indexPath.row].crew
+            cell.spaceshipPassengerLabel.text = "Number of passengers: " + searchStarWarsViewModel.spaceshipData[indexPath.row].passengers
+            cell.spaceshipCargoCapacityLabel.text = "Cargo capacity: " + searchStarWarsViewModel.spaceshipData[indexPath.row].cargo_capacity
             
             return cell
                    
     } else if (informationToDisplay == SelectedSegment.starWarsVehicles.rawValue)  {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CID_VehicleCell", for: indexPath) as! VehicleTableViewCell
             
-            cell.vehicleNameLabel.text = "Name: " + vehicleViewModel.vehicleData[indexPath.row].name
-            cell.vehicleManufucturerLabel.text = "Manufucturer: " + vehicleViewModel.vehicleData[indexPath.row].manufucturer
-            cell.vehicleModelLabel.text = "Model: " + vehicleViewModel.vehicleData[indexPath.row].model
-            cell.vehicleCostLabel.text = "Cost: " + vehicleViewModel.vehicleData[indexPath.row].cost_in_credits
-            cell.vehicleNumberOfCrewLabel.text = "Number of crew: " + vehicleViewModel.vehicleData[indexPath.row].crew
+            cell.vehicleNameLabel.text = "Name: " + searchStarWarsViewModel.vehicleData[indexPath.row].name
+            cell.vehicleManufucturerLabel.text = "Manufucturer: " + searchStarWarsViewModel.vehicleData[indexPath.row].manufucturer
+            cell.vehicleModelLabel.text = "Model: " + searchStarWarsViewModel.vehicleData[indexPath.row].model
+            cell.vehicleCostLabel.text = "Cost: " + searchStarWarsViewModel.vehicleData[indexPath.row].cost_in_credits
+            cell.vehicleNumberOfCrewLabel.text = "Number of crew: " + searchStarWarsViewModel.vehicleData[indexPath.row].crew
         
         return cell
                 
     } else if (informationToDisplay == SelectedSegment.starWarspeople.rawValue)  {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CID_PeopleCell", for: indexPath) as! PeopleTableViewCell
-            cell.peopleNameLabel.text = "Name: " + peopleViewModel.peopleData[indexPath.row].name
-            cell.peopleHeightLabel.text = "Height: " + peopleViewModel.peopleData[indexPath.row].height
-            cell.peopleMassLabel.text = "Mass: " + peopleViewModel.peopleData[indexPath.row].mass
-            cell.peopleGenderLabel.text = "Gender:" + peopleViewModel.peopleData[indexPath.row].gender
-            cell.peopleNirthyearLabel.text = "Birth year:" + peopleViewModel.peopleData[indexPath.row].birthYear
+            cell.peopleNameLabel.text = "Name: " + searchStarWarsViewModel.peopleData[indexPath.row].name
+            cell.peopleHeightLabel.text = "Height: " + searchStarWarsViewModel.peopleData[indexPath.row].height
+            cell.peopleMassLabel.text = "Mass: " + searchStarWarsViewModel.peopleData[indexPath.row].mass
+            cell.peopleGenderLabel.text = "Gender:" + searchStarWarsViewModel.peopleData[indexPath.row].gender
+            cell.peopleNirthyearLabel.text = "Birth year:" + searchStarWarsViewModel.peopleData[indexPath.row].birthYear
         return cell
 
                  
@@ -164,20 +170,20 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CID_FilmCell", for: indexPath) as! FilmTableViewCell
-            cell.movieTitleLabel.text = "Film title: " + filmViewModel.filmData[indexPath.row].title
-            cell.movieIdLabel.text = "Film number: \(filmViewModel.filmData[indexPath.row].episode_id)"
-            cell.movieDirectorNameLabel.text = "Director: " + filmViewModel.filmData[indexPath.row].director
-            cell.movieProducerNameLabel.text = "Producer: " + filmViewModel.filmData[indexPath.row].producer
+            cell.movieTitleLabel.text = "Film title: " + searchStarWarsViewModel.filmData[indexPath.row].title
+            cell.movieIdLabel.text = "Film number: \(searchStarWarsViewModel.filmData[indexPath.row].episode_id)"
+            cell.movieDirectorNameLabel.text = "Director: " + searchStarWarsViewModel.filmData[indexPath.row].director
+            cell.movieProducerNameLabel.text = "Producer: " + searchStarWarsViewModel.filmData[indexPath.row].producer
       return cell
                   
     } else if (informationToDisplay == SelectedSegment.starWarsSpecies.rawValue)  {
      
         let cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpecieCell", for: indexPath) as! SpecieTableViewCell
-        cell.specieNameLabel.text = "Name: " + specieViewModel.specieData[indexPath.row].name
-        cell.specieClassificationLabel.text = "Classification: " + specieViewModel.specieData[indexPath.row].classification
-        cell.specieDesignationLabel.text = "Designation: " + specieViewModel.specieData[indexPath.row].designation
-        cell.aspecieAverageHeightLabel.text = "Average height: " + specieViewModel.specieData[indexPath.row].average_height
-        cell.specieLanguageLabel.text = "Language: " + specieViewModel.specieData[indexPath.row].language
+        cell.specieNameLabel.text = "Name: " + searchStarWarsViewModel.specieData[indexPath.row].name
+        cell.specieClassificationLabel.text = "Classification: " + searchStarWarsViewModel.specieData[indexPath.row].classification
+        cell.specieDesignationLabel.text = "Designation: " + searchStarWarsViewModel.specieData[indexPath.row].designation
+        cell.aspecieAverageHeightLabel.text = "Average height: " + searchStarWarsViewModel.specieData[indexPath.row].average_height
+        cell.specieLanguageLabel.text = "Language: " + searchStarWarsViewModel.specieData[indexPath.row].language
         
       return cell
     }
