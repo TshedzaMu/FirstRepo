@@ -9,9 +9,9 @@
 import UIKit
 
 class SpecieTableViewCell: UITableViewCell {
-    let name:String = ""
-    let classification:String = ""
-    let designation:String = ""
-    let average_height:Int = 0
-    let language: String = ""
+    @IBOutlet weak var specieNameLabel: UILabel!
+     @IBOutlet weak var specieClassificationLabel: UILabel!
+     @IBOutlet weak var specieDesignationLabel: UILabel!
+     @IBOutlet weak var aspecieAverageHeightLabel: UILabel!
+     @IBOutlet weak var specieLanguageLabel: UILabel!
 }

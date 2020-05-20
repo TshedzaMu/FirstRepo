@@ -8,11 +8,6 @@
 
 import Foundation
 
-
-struct SpaceshipsResults: Codable {
-    var results:[SpaceshipData]
-}
-
 struct SpaceshipData: Codable{
     
     var name: String

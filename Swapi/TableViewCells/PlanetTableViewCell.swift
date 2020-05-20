@@ -12,13 +12,10 @@ import UIKit
 
 class PlanetTableViewCell : UITableViewCell{
     
-    
-    
-    
-    let  name: String = ""
-    let  rotation_Period: String = ""
-    let  diameter: Int = 0
-    let  climate: String = ""
-    let  population: Int = 0
+  @IBOutlet weak var palentNameLabel: UILabel!
+    @IBOutlet weak var planetRotationPeriodLabel: UILabel!
+    @IBOutlet weak var planetDiameterLabel: UILabel!
+    @IBOutlet weak var planetClimateLabel: UILabel!
+    @IBOutlet weak var planetPopulationLabel: UILabel!
 
 }

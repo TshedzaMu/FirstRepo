@@ -8,16 +8,11 @@
 
 import Foundation
 
-
-struct PlanetDataResults:Codable {
-    var results: [PlanetData]
-}
-
 struct PlanetData: Codable{
     
     var  name: String
     var  rotation_Period: String
-    var  diameter: Int
+    var  diameter: String
     var climate: String
-    var population: Int
+    var population: String
 }

@@ -8,11 +8,6 @@
 
 import Foundation
 
-struct PeopleDataResults:Codable {
-    var results: [PeopleData]
-}
-
-
 struct PeopleData: Codable {
     
     var name: String

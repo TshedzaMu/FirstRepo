@@ -8,16 +8,10 @@
 
 import Foundation
 
-
-struct SpeciesResults:Codable {
-    
-    var reuslts:[SpecieData]
-}
-
 struct SpecieData:Codable {
     var name:String
     var classification:String
     var designation:String
-    var average_height:Int
+    var average_height:String
     var language: String
 }

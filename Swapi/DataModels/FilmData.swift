@@ -8,10 +8,6 @@
 
 import Foundation
 
-struct FilmResults:Codable {
-    var  results:[FilmData]
-}
-
 struct FilmData:Codable {
     var title:String
     var episode_id:Int

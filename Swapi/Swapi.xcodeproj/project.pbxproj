@@ -31,6 +31,8 @@
 		045B0887247345E9004EAEED /* VehicleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B0886247345E9004EAEED /* VehicleViewModel.swift */; };
 		045B08892473460B004EAEED /* SpaceshipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B08882473460B004EAEED /* SpaceshipViewModel.swift */; };
 		045B088B24749187004EAEED /* FilmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B088A24749187004EAEED /* FilmViewModel.swift */; };
+		045D9FEF247526F10085D850 /* PlanetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D9FEE247526F10085D850 /* PlanetViewModel.swift */; };
+		045D9FF1247530270085D850 /* SpecieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D9FF0247530270085D850 /* SpecieViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		045B0886247345E9004EAEED /* VehicleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleViewModel.swift; sourceTree = "<group>"; };
 		045B08882473460B004EAEED /* SpaceshipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceshipViewModel.swift; sourceTree = "<group>"; };
 		045B088A24749187004EAEED /* FilmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmViewModel.swift; sourceTree = "<group>"; };
+		045D9FEE247526F10085D850 /* PlanetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewModel.swift; sourceTree = "<group>"; };
+		045D9FF0247530270085D850 /* SpecieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +208,8 @@
 				045B0886247345E9004EAEED /* VehicleViewModel.swift */,
 				045B08882473460B004EAEED /* SpaceshipViewModel.swift */,
 				045B088A24749187004EAEED /* FilmViewModel.swift */,
+				045D9FEE247526F10085D850 /* PlanetViewModel.swift */,
+				045D9FF0247530270085D850 /* SpecieViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 				045B07F7246D9A92004EAEED /* ViewController.swift in Sources */,
 				045B088524732893004EAEED /* PeopleViewModel.swift in Sources */,
 				045B088B24749187004EAEED /* FilmViewModel.swift in Sources */,
+				045D9FF1247530270085D850 /* SpecieViewModel.swift in Sources */,
 				045B0887247345E9004EAEED /* VehicleViewModel.swift in Sources */,
 				045B08892473460B004EAEED /* SpaceshipViewModel.swift in Sources */,
 				045B0835246F2741004EAEED /* PlanetTableViewCell.swift in Sources */,
@@ -355,6 +362,7 @@
 				045B083B246F2991004EAEED /* FilmTableViewCell.swift in Sources */,
 				045B07F3246D9A91004EAEED /* AppDelegate.swift in Sources */,
 				045B0831246F22F5004EAEED /* SpecieData.swift in Sources */,
+				045D9FEF247526F10085D850 /* PlanetViewModel.swift in Sources */,
 				045B0837246F2900004EAEED /* VehicleTableViewCell.swift in Sources */,
 				045B082D246F20D1004EAEED /* VehicleData.swift in Sources */,
 				045B07F5246D9A92004EAEED /* SceneDelegate.swift in Sources */,
