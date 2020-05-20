@@ -15,7 +15,11 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
       fileprivate var searchStarWarsViewModel = SearchStarWarsViewModel()
     
     
-    @IBOutlet weak var starWarsInformationTableView: UITableView!
+      @IBOutlet weak var starWarsInformationTableView: UITableView!
+    
+      @IBOutlet weak var searchSegment: UISegmentedControl!
+    
+      
     
     lazy var informationToDisplay = 0
     
@@ -25,95 +29,102 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
            starWarsInformationTableView.delegate = self
            starWarsInformationTableView.dataSource = self
         
-            startActivityIndicator()
-        searchStarWarsViewModel.getData(searchType:"planets"){
-            print("planets Successful")
-            self.stopActivityIndicator()
-            self.starWarsInformationTableView.reloadData()
+           startActivityIndicator()
+           searchStarWarsViewModel.getData(searchType:"planets"){
+           print("planets Successful")
+           self.stopActivityIndicator()
+           self.starWarsInformationTableView.reloadData()
         
             }
        }
 
     
-    @IBAction func searchSegment(_ sender: UISegmentedControl) {
+@IBAction func searchSegmentValueChanged(_ sender: UISegmentedControl) {
        informationToDisplay = sender.selectedSegmentIndex
-         starWarsInformationTableView.reloadData()
-        if informationToDisplay == SelectedSegment.starWarsPlanets.rawValue {
-    
-            if searchStarWarsViewModel.planetData != nil{
-                  self.starWarsInformationTableView.reloadData()
-            }else{
-                startActivityIndicator()
-                searchStarWarsViewModel.getData(searchType:"planets"){
-                print("planets Successful")
-                self.stopActivityIndicator()
+        
+    if let segmentSelected = SelectedSegment(rawValue: searchSegment.selectedSegmentIndex){
+            switch segmentSelected {
+            case .planets:
+                if searchStarWarsViewModel.planetData != nil{
+                self.starWarsInformationTableView.reloadData()
+                }else {
+                    startActivityIndicator()
+                    searchStarWarsViewModel.getData(searchType:"planets"){
+                    print("planets Successful")
+                   self.stopActivityIndicator()
 
+                    }
                 }
-            }
-            
-        } else if informationToDisplay == SelectedSegment.starWarsSpaceships.rawValue  {
-            startActivityIndicator()
-            
-            searchStarWarsViewModel.getData(searchType:"starships"){
-            print("Spaceship Successful")
-            self.stopActivityIndicator()
-            self.starWarsInformationTableView.reloadData()
-            }
-                   
-        } else if informationToDisplay == SelectedSegment.starWarsVehicles.rawValue  {
-            startActivityIndicator()
-            searchStarWarsViewModel.getData(searchType:"vehicles"){
-            print("Vehicle Successful")
-            self.stopActivityIndicator()
-            self.starWarsInformationTableView.reloadData()
-            }
+                         
+            case .starships:
+                        
+                     startActivityIndicator()
+                     searchStarWarsViewModel.getData(searchType:"starships"){
+                     print("Spaceship Successful")
+                     self.stopActivityIndicator()
+                     self.starWarsInformationTableView.reloadData()
+                   }
                 
-        } else if informationToDisplay == SelectedSegment.starWarspeople.rawValue  {
-            startActivityIndicator()
-            searchStarWarsViewModel.getData(searchType:"people"){
-            print("People Successful")
-            self.stopActivityIndicator()
-            self.starWarsInformationTableView.reloadData()
+                case .vehicles:
+                    startActivityIndicator()
+                          searchStarWarsViewModel.getData(searchType:"vehicles"){
+                          print("Vehicle Successful")
+                          self.stopActivityIndicator()
+                          self.starWarsInformationTableView.reloadData()
+                        }
+                
+                case .people:
+                           startActivityIndicator()
+                           searchStarWarsViewModel.getData(searchType:"people"){
+                           print("People Successful")
+                           self.stopActivityIndicator()
+                           self.starWarsInformationTableView.reloadData()
+                          }
+                
+                case .films:
+                          startActivityIndicator()
+                          searchStarWarsViewModel.getData(searchType:"films"){
+                          print("film Successful")
+                          self.stopActivityIndicator()
+                          self.starWarsInformationTableView.reloadData()
+                      }
+                
+                
+                case .species:
+                           startActivityIndicator()
+                               searchStarWarsViewModel.getData(searchType:"species"){
+                           print("Species Successful")
+                           self.stopActivityIndicator()
+                           self.starWarsInformationTableView.reloadData()
+                           }
+                
+                
+                     }
             }
-                                
-        } else if informationToDisplay == SelectedSegment.starWarsFilms.rawValue  {
-            startActivityIndicator()
-            searchStarWarsViewModel.getData(searchType:"films"){
-            print("film Successful")
-            self.stopActivityIndicator()
-            self.starWarsInformationTableView.reloadData()
-            }
-                  
-        } else if informationToDisplay == SelectedSegment.starWarsSpecies.rawValue  {
-            startActivityIndicator()
-            searchStarWarsViewModel.getData(searchType:"species"){
-            print("Species Successful")
-            self.stopActivityIndicator()
-            self.starWarsInformationTableView.reloadData()
-            }
-        }
-    }
+      }
+     
+
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var number = 0
         
-        if (informationToDisplay == SelectedSegment.starWarsPlanets.rawValue) {
+        if (informationToDisplay == SelectedSegment.planets.rawValue) {
             number = searchStarWarsViewModel.planetData.count
                                
-        } else if  (informationToDisplay == SelectedSegment.starWarsSpaceships.rawValue) {
+        } else if  (informationToDisplay == SelectedSegment.starships.rawValue) {
             number = searchStarWarsViewModel.spaceshipData.count
                  
-        } else if (informationToDisplay == SelectedSegment.starWarsVehicles.rawValue)  {
+        } else if (informationToDisplay == SelectedSegment.vehicles.rawValue)  {
                 number = searchStarWarsViewModel.vehicleData.count
                        
-        } else if  (informationToDisplay == SelectedSegment.starWarspeople.rawValue)  {
+        } else if  (informationToDisplay == SelectedSegment.people.rawValue)  {
                 number = searchStarWarsViewModel.peopleData.count
     
-        } else if (informationToDisplay == SelectedSegment.starWarsFilms.rawValue)  {
+        } else if (informationToDisplay == SelectedSegment.films.rawValue)  {
             number = searchStarWarsViewModel.filmData.count
             
-        } else if (informationToDisplay == SelectedSegment.starWarsSpecies.rawValue)  {
+        } else if (informationToDisplay == SelectedSegment.species.rawValue)  {
             number = searchStarWarsViewModel.specieData.count
         }
                           
@@ -123,7 +134,7 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
       
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-    if (informationToDisplay == SelectedSegment.starWarsPlanets.rawValue) {
+    if (informationToDisplay == SelectedSegment.planets.rawValue) {
         let  cell = tableView.dequeueReusableCell(withIdentifier: "CID_PlanetCell", for: indexPath) as! PlanetTableViewCell
          cell.palentNameLabel.text = "Planet name: " + searchStarWarsViewModel.planetData[indexPath.row].name
          cell.planetRotationPeriodLabel.text = "Rotation period " + searchStarWarsViewModel.planetData[indexPath.row].rotation_Period
@@ -133,7 +144,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
             
       return cell
                         
-    } else if  (informationToDisplay == SelectedSegment.starWarsSpaceships.rawValue) {
+    } else if  (informationToDisplay == SelectedSegment.starships.rawValue) {
         
         
         let  cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpaceshipCell", for: indexPath) as! SpaceshipTableViewCell
@@ -145,7 +156,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
             
             return cell
                    
-    } else if (informationToDisplay == SelectedSegment.starWarsVehicles.rawValue)  {
+    } else if (informationToDisplay == SelectedSegment.vehicles.rawValue)  {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CID_VehicleCell", for: indexPath) as! VehicleTableViewCell
             
             cell.vehicleNameLabel.text = "Name: " + searchStarWarsViewModel.vehicleData[indexPath.row].name
@@ -156,7 +167,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         
         return cell
                 
-    } else if (informationToDisplay == SelectedSegment.starWarspeople.rawValue)  {
+    } else if (informationToDisplay == SelectedSegment.people.rawValue)  {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CID_PeopleCell", for: indexPath) as! PeopleTableViewCell
             cell.peopleNameLabel.text = "Name: " + searchStarWarsViewModel.peopleData[indexPath.row].name
             cell.peopleHeightLabel.text = "Height: " + searchStarWarsViewModel.peopleData[indexPath.row].height
@@ -166,7 +177,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         return cell
 
                  
-    } else if (informationToDisplay == SelectedSegment.starWarsFilms.rawValue)  {
+    } else if (informationToDisplay == SelectedSegment.films.rawValue)  {
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CID_FilmCell", for: indexPath) as! FilmTableViewCell
@@ -176,7 +187,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
             cell.movieProducerNameLabel.text = "Producer: " + searchStarWarsViewModel.filmData[indexPath.row].producer
       return cell
                   
-    } else if (informationToDisplay == SelectedSegment.starWarsSpecies.rawValue)  {
+    } else if (informationToDisplay == SelectedSegment.species.rawValue)  {
      
         let cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpecieCell", for: indexPath) as! SpecieTableViewCell
         cell.specieNameLabel.text = "Name: " + searchStarWarsViewModel.specieData[indexPath.row].name
@@ -195,22 +206,22 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     {
         var cellHeight = CGFloat()
               
-        if informationToDisplay == SelectedSegment.starWarsPlanets.rawValue {
+        if informationToDisplay == SelectedSegment.planets.rawValue {
                 cellHeight = 150
                   
-        } else if informationToDisplay == SelectedSegment.starWarsSpaceships.rawValue  {
+        } else if informationToDisplay == SelectedSegment.starships.rawValue  {
                   cellHeight = 150
              
-        } else if informationToDisplay == SelectedSegment.starWarsVehicles.rawValue  {
+        } else if informationToDisplay == SelectedSegment.vehicles.rawValue  {
                   cellHeight = 150
           
-        } else if informationToDisplay == SelectedSegment.starWarspeople.rawValue  {
+        } else if informationToDisplay == SelectedSegment.people.rawValue  {
                 cellHeight = 150
            
-        } else if informationToDisplay == SelectedSegment.starWarsFilms.rawValue  {
+        } else if informationToDisplay == SelectedSegment.films.rawValue  {
                    cellHeight = 150
             
-        } else if informationToDisplay == SelectedSegment.starWarsSpecies.rawValue  {
+        } else if informationToDisplay == SelectedSegment.species.rawValue  {
                   cellHeight = 150
              
         }

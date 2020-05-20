@@ -29,7 +29,7 @@
                                     <segment title="Species"/>
                                 </segments>
                                 <connections>
-                                    <action selector="searchSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="d3m-pA-Pnw"/>
+                                    <action selector="searchSegmentValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="gUw-uE-Gy1"/>
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fv9-jS-VyW">
@@ -371,6 +371,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="searchSegment" destination="pKj-oD-c5y" id="hTm-nw-Ghd"/>
                         <outlet property="starWarsInformationTableView" destination="fv9-jS-VyW" id="Hoi-iE-vMK"/>
                     </connections>
                 </viewController>

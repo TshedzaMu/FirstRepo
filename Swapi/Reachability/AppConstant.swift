@@ -10,12 +10,16 @@ import Foundation
 
 
 enum SelectedSegment:Int {
-    case starWarsPlanets = 0
-    case starWarsSpaceships
-    case starWarsVehicles
-    case starWarspeople
-    case starWarsFilms
-    case starWarsSpecies
+    case planets = 0
+    case starships
+    case vehicles
+    case people
+    case films
+    case species
+    
+    var name: String{
+        get {return String(describing: self)}
+    }
 }
 
 
