@@ -121,4 +121,42 @@ class SearchStarWarsViewModel {
      }
    }.resume()
   }
+    
+    
+    
+    func filterTableView(sortType:String , index:Int, text:String)
+    {
+        if (sortType == "planets"){
+      
+        planetData = planetData.filter({ (data) -> Bool in
+        return data.name.contains(text)
+        })
+
+        }else if (sortType == "starships"){
+          
+           spaceshipData = spaceshipData.filter({ (data) -> Bool in
+                 return data.name.contains(text)
+        })
+                
+        }else if (sortType == "vehicles"){
+           
+            vehicleData = vehicleData.filter({ (data) -> Bool in
+                return data.name.contains(text)
+        })
+                
+        }else if (sortType == "people"){
+          
+          peopleData = peopleData.filter({ (data) -> Bool in
+          return data.name.contains(text)
+          })
+                
+        }else if (sortType == "films"){
+        
+            filmData = filmData.filter({ (data) -> Bool in
+                return data.title.contains(text)
+        })
+    
+      }
+        
+    }
 }

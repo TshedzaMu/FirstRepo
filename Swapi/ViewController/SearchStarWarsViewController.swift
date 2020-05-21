@@ -14,13 +14,11 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
     
       fileprivate var searchStarWarsViewModel = SearchStarWarsViewModel()
     
-    
       @IBOutlet weak var starWarsInformationTableView: UITableView!
     
       @IBOutlet weak var searchSegment: UISegmentedControl!
     
-      
-    
+
     lazy var informationToDisplay = 0
     
     override func viewDidLoad() {
@@ -240,59 +238,98 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
-      if searchText.isEmpty{
-            
-          searchStarWarsViewModel.planetData =  searchStarWarsViewModel.planetData
-          self.starWarsInformationTableView.reloadData()
+        if searchText.isEmpty {
+        
+        if let segmentSelected = SelectedSegment(rawValue: searchSegment.selectedSegmentIndex){
+               switch segmentSelected {
+                   case .planets:
+    
+                        startActivityIndicator()
+                        searchStarWarsViewModel.getData(searchType:"planets"){
+                        print("planets Successful")
+                        self.stopActivityIndicator()
+                       self.starWarsInformationTableView.reloadData()
+                       }
+                                
+                   case .starships:
+                               
+                        startActivityIndicator()
+                         searchStarWarsViewModel.getData(searchType:"starships"){
+                         print("Spaceship Successful")
+                         self.stopActivityIndicator()
+                         self.starWarsInformationTableView.reloadData()
+                       }
+                       
+                   case .vehicles:
+                         startActivityIndicator()
+                         searchStarWarsViewModel.getData(searchType:"vehicles"){
+                         print("Vehicle Successful")
+                         self.stopActivityIndicator()
+                         self.starWarsInformationTableView.reloadData()
+                       }
+                       
+                   case .people:
+                         startActivityIndicator()
+                         searchStarWarsViewModel.getData(searchType:"people"){
+                         print("People Successful")
+                         self.stopActivityIndicator()
+                         self.starWarsInformationTableView.reloadData()
+                       }
+                       
+                   case .films:
+                        startActivityIndicator()
+                        searchStarWarsViewModel.getData(searchType:"films"){
+                        print("film Successful")
+                        self.stopActivityIndicator()
+                        self.starWarsInformationTableView.reloadData()
+                       }
+                       
+                       
+                   case .species:
+                        startActivityIndicator()
+                        searchStarWarsViewModel.getData(searchType:"species"){
+                        print("Species Successful")
+                        self.stopActivityIndicator()
+                       self.starWarsInformationTableView.reloadData()
+                       }
+                   }
+               }
+    
+        
         }else{
-           filterTableView(ind: searchBar.selectedScopeButtonIndex, text: searchText)
-        }
-    }
-    
-    func filterTableView(ind:Int,text:String)
-    {
-        
-        if let tableCellToFilter = SelectedSegment(rawValue: searchSegment.selectedSegmentIndex) {
-             switch tableCellToFilter {
-               case .planets:
-               searchStarWarsViewModel.planetData = searchStarWarsViewModel.planetData.filter({ (data) -> Bool in
-                    return data.name.contains(text)
-                })
-                 self.starWarsInformationTableView.reloadData()
-               case .starships:
+            
+            if let numberOfRows = SelectedSegment(rawValue: searchSegment.selectedSegmentIndex){
+              switch numberOfRows {
+                 case .planets:
+                    searchStarWarsViewModel.filterTableView(sortType: "planets", index: searchBar.selectedScopeButtonIndex, text: searchText)
+                self.starWarsInformationTableView.reloadData()
                 
-               searchStarWarsViewModel.spaceshipData = searchStarWarsViewModel.spaceshipData.filter({ (data) -> Bool in
-                    return data.name.contains(text)
-                })
-              self.starWarsInformationTableView.reloadData()
-               case .vehicles:
-                
-                   searchStarWarsViewModel.vehicleData = searchStarWarsViewModel.vehicleData.filter({ (data) -> Bool in
-                    return data.name.contains(text)
-                })
-                    self.starWarsInformationTableView.reloadData()
-               case .people:
-                
-                searchStarWarsViewModel.peopleData  = searchStarWarsViewModel.peopleData.filter({ (data) -> Bool in
-                    return data.name.contains(text)
-                })
-                     self.starWarsInformationTableView.reloadData()
-               case .films:
-                searchStarWarsViewModel.filmData = searchStarWarsViewModel.filmData.filter({ (data) -> Bool in
-                    return data.title.contains(text)
-                })
-                     self.starWarsInformationTableView.reloadData()
-               case .species:
-               searchStarWarsViewModel.specieData = searchStarWarsViewModel.specieData.filter({ (data) -> Bool in
-                    return data.name.contains(text)
-                })
-               self.starWarsInformationTableView.reloadData()
+                case .starships:
+                 searchStarWarsViewModel.filterTableView(sortType: "starships", index: searchBar.selectedScopeButtonIndex, text: searchText)
+                self.starWarsInformationTableView.reloadData()
+             
+                case .vehicles:
+                 searchStarWarsViewModel.filterTableView(sortType: "vehicless", index: searchBar.selectedScopeButtonIndex, text: searchText)
+                self.starWarsInformationTableView.reloadData()
+                  
+                case .people:
+                 searchStarWarsViewModel.filterTableView(sortType: "people", index: searchBar.selectedScopeButtonIndex, text: searchText)
+                self.starWarsInformationTableView.reloadData()
+                     
+                case .films:
+                 searchStarWarsViewModel.filterTableView(sortType: "films", index: searchBar.selectedScopeButtonIndex, text: searchText)
+                self.starWarsInformationTableView.reloadData()
+                      
+                case .species:
+                 searchStarWarsViewModel.filterTableView(sortType: "species", index: searchBar.selectedScopeButtonIndex, text: searchText)
+                self.starWarsInformationTableView.reloadData()
+                 
+                     
+                }
             }
+
         }
-        
     }
     
-    
-        
 }
 

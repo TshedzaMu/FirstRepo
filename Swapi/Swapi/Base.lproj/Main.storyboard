@@ -350,7 +350,7 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zto-2h-ALC">
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="zto-2h-ALC">
                                 <rect key="frame" x="5" y="114" width="404" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
