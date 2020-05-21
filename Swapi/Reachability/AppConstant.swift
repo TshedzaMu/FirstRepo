@@ -17,7 +17,7 @@ enum SelectedSegment:Int {
     case films
     case species
     
-    var name: String{
+    var selectedSegmentType: String{
         get {return String(describing: self)}
     }
 }

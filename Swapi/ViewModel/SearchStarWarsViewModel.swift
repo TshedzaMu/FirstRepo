@@ -26,21 +26,19 @@ class SearchStarWarsViewModel {
     let sessionCongfig = URLSession.shared
     let _: Void = sessionCongfig.dataTask(with: url!) { (data, response, error) in
     if let data = data {
-        print(data)
-        //print(response) // Response even return the URL that was called
+     
       do {
-        // JSON Parsing
+  
          let jsonData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
          let userDataArr = jsonData?["results"] as!  [[String: Any]]
-            //  print(userDataArr)
+  
         
          for jsonDetailData in userDataArr {
             DispatchQueue.main.async {
                 completed()
                 
-        if (searchType == "planets"){
+        if (searchType == SelectedSegment.planets.selectedSegmentType){
                                             
-            print(jsonDetailData.count)
             let planetName = jsonDetailData["name"] as! String
             let rotation_period = jsonDetailData["rotation_period"] as! String
             let diameter = jsonDetailData["diameter"] as! String
@@ -48,24 +46,21 @@ class SearchStarWarsViewModel {
             let population = jsonDetailData["population"] as! String
             let tempData = PlanetData(name: planetName, rotation_Period: rotation_period, diameter: diameter, climate: climate, population: population)
                 self.planetData.append(tempData)
-                print("Planet tempdata",tempData)
+             
                 
-        }else if (searchType == "starships"){
+        }else if (searchType == SelectedSegment.starships.selectedSegmentType){
             
-            print(jsonDetailData.count)
             let name = jsonDetailData["name"] as! String
-                                    
             let manufucturer = jsonDetailData["manufacturer"] as! String
             let crew = jsonDetailData["crew"] as! String
             let passengers = jsonDetailData["passengers"] as! String
             let cargo_capacity = jsonDetailData["cargo_capacity"] as! String
             let tempData = SpaceshipData(name: name, manufucturer: manufucturer,crew: crew, passengers: passengers, cargo_capacity: cargo_capacity)
                 self.spaceshipData.append(tempData)
-                print("Spaceship tempdata",tempData)
-                
-        }else if (searchType == "vehicles"){
+             
             
-            print(jsonDetailData.count)
+        }else if (searchType == SelectedSegment.vehicles.selectedSegmentType){
+            
             let name = jsonDetailData["name"] as! String
             let model = jsonDetailData["model"] as! String
             let manufucturer = jsonDetailData["manufacturer"] as! String
@@ -73,11 +68,10 @@ class SearchStarWarsViewModel {
             let crew = jsonDetailData["crew"] as! String
             let tempData = VehicleData(name: name, model: model, manufucturer:manufucturer,cost_in_credits: cost,crew: crew)
                 self.vehicleData.append(tempData)
-                print("Vehicle tempdata",tempData)
+              
                 
-        }else if (searchType == "people"){
+        }else if (searchType == SelectedSegment.people.selectedSegmentType){
             
-            print(jsonDetailData.count)
             let name = jsonDetailData["name"] as! String
             let height = jsonDetailData["height"] as! String
             let  mass = jsonDetailData["mass"] as! String
@@ -85,12 +79,10 @@ class SearchStarWarsViewModel {
             let  birthYear = jsonDetailData["birth_year"] as! String
             let tempData = PeopleData(name: name, height: height, mass: mass,gender:gender,birthYear: birthYear )
                 self.peopleData.append(tempData)
-                print("tempdata",tempData)
-                
-                
-        }else if (searchType == "films"){
-            
-            print(jsonDetailData.count)
+             
+        
+        }else if (searchType == SelectedSegment.films.selectedSegmentType) {
+        
             let filmTiltle = jsonDetailData["title"] as! String
             let filmEpisodeId = jsonDetailData["episode_id"] as! Int
             let filmDirector = jsonDetailData["director"] as! String
@@ -98,10 +90,10 @@ class SearchStarWarsViewModel {
             let filmReleaseDate = jsonDetailData["release_date"] as! String
             let tempData = FilmData(title: filmTiltle, episode_id:filmEpisodeId, director: filmDirector, producer: filmProducer,release_date: filmReleaseDate)
                 self.filmData.append(tempData)
-                print("Film tempdata",tempData)
+              
                 
-        }else if (searchType == "species"){
-            print(jsonDetailData.count)
+        }else if (searchType == SelectedSegment.species.selectedSegmentType) {
+            
             let specieName = jsonDetailData["name"] as! String
             let classification  = jsonDetailData["classification"] as! String
             let designation  = jsonDetailData["designation"] as! String
@@ -109,7 +101,7 @@ class SearchStarWarsViewModel {
             let language  = jsonDetailData["language"] as! String
             let tempData = SpecieData(name: specieName, classification: classification, designation: designation, average_height: average_height, language: language)
                 self.specieData.append(tempData)
-                print("Planet tempdata",tempData)
+              
             }
                 
           }
@@ -127,37 +119,31 @@ class SearchStarWarsViewModel {
     
     func filterTableView(sortType:String , index:Int, text:String)
     {
-        if (sortType == "planets"){
-      
+        if (sortType == SelectedSegment.planets.selectedSegmentType) {
         planetData = planetData.filter({ (data) -> Bool in
         return data.name.contains(text)
         })
-
-        }else if (sortType == "starships"){
+        }else if (sortType == SelectedSegment.starships.selectedSegmentType) {
           
            spaceshipData = spaceshipData.filter({ (data) -> Bool in
                  return data.name.contains(text)
         })
-                
-        }else if (sortType == "vehicles"){
+        }else if (sortType == SelectedSegment.vehicles.selectedSegmentType) {
            
             vehicleData = vehicleData.filter({ (data) -> Bool in
                 return data.name.contains(text)
         })
-                
-        }else if (sortType == "people"){
+        }else if (sortType == SelectedSegment.people.selectedSegmentType) {
           
           peopleData = peopleData.filter({ (data) -> Bool in
              return data.name.contains(text)
           })
-                
-        }else if (sortType == "films"){
+        }else if (sortType == SelectedSegment.films.selectedSegmentType) {
         
             filmData = filmData.filter({ (data) -> Bool in
                 return data.title.contains(text)
         })
-            
-        }else if (sortType == "species"){
+        }else if (sortType == SelectedSegment.species.selectedSegmentType) {
             
             specieData = specieData.filter({ (data) -> Bool in
                 return data.name.contains(text)
