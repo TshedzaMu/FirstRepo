@@ -17,8 +17,16 @@ class SearchStarWarsViewModel {
     var filmData : [FilmData] = []
     var specieData : [SpecieData] = []
     
+    
+    var filterPlanetData : [PlanetData] = []
+    var filterSpaceshipData : [SpaceshipData] = []
+    var filterVehicleData : [VehicleData] = []
+    var filterPeopleData : [PeopleData] = []
+    var filterFilmData : [FilmData] = []
+    var filterSpecieData : [SpecieData] = []
+    
                
- func getData(searchType:String,completed: @escaping () ->())  {
+    func getData(searchType:String,completed: @escaping () ->())  {
         
     let baseUrl = "https://swapi.dev/api/"
     let urlString = baseUrl + searchType
@@ -37,6 +45,26 @@ class SearchStarWarsViewModel {
             DispatchQueue.main.async {
                 completed()
                 
+//               switch searchType {
+//
+//                case .planets:
+//
+//                 case .starships:
+//
+//                 case .vehicles:
+//
+//                 case .people:
+//
+//                 case .films:
+//
+//                 case .species:
+//
+//
+//                }
+                
+                
+                
+                
         if (searchType == SelectedSegment.planets.selectedSegmentType){
                                             
             let planetName = jsonDetailData["name"] as! String
@@ -46,6 +74,7 @@ class SearchStarWarsViewModel {
             let population = jsonDetailData["population"] as! String
             let tempData = PlanetData(name: planetName, rotation_Period: rotation_period, diameter: diameter, climate: climate, population: population)
                 self.planetData.append(tempData)
+                self.filterPlanetData.append(tempData)
              
                 
         }else if (searchType == SelectedSegment.starships.selectedSegmentType){
@@ -57,6 +86,7 @@ class SearchStarWarsViewModel {
             let cargo_capacity = jsonDetailData["cargo_capacity"] as! String
             let tempData = SpaceshipData(name: name, manufucturer: manufucturer,crew: crew, passengers: passengers, cargo_capacity: cargo_capacity)
                 self.spaceshipData.append(tempData)
+                self.filterSpaceshipData.append(tempData)
              
             
         }else if (searchType == SelectedSegment.vehicles.selectedSegmentType){
@@ -68,6 +98,7 @@ class SearchStarWarsViewModel {
             let crew = jsonDetailData["crew"] as! String
             let tempData = VehicleData(name: name, model: model, manufucturer:manufucturer,cost_in_credits: cost,crew: crew)
                 self.vehicleData.append(tempData)
+                self.filterVehicleData.append(tempData)
               
                 
         }else if (searchType == SelectedSegment.people.selectedSegmentType){
@@ -79,6 +110,7 @@ class SearchStarWarsViewModel {
             let  birthYear = jsonDetailData["birth_year"] as! String
             let tempData = PeopleData(name: name, height: height, mass: mass,gender:gender,birthYear: birthYear )
                 self.peopleData.append(tempData)
+                self.filterPeopleData.append(tempData)
              
         
         }else if (searchType == SelectedSegment.films.selectedSegmentType) {
@@ -90,6 +122,7 @@ class SearchStarWarsViewModel {
             let filmReleaseDate = jsonDetailData["release_date"] as! String
             let tempData = FilmData(title: filmTiltle, episode_id:filmEpisodeId, director: filmDirector, producer: filmProducer,release_date: filmReleaseDate)
                 self.filmData.append(tempData)
+            self.filterFilmData.append(tempData)
               
                 
         }else if (searchType == SelectedSegment.species.selectedSegmentType) {
@@ -101,6 +134,7 @@ class SearchStarWarsViewModel {
             let language  = jsonDetailData["language"] as! String
             let tempData = SpecieData(name: specieName, classification: classification, designation: designation, average_height: average_height, language: language)
                 self.specieData.append(tempData)
+               self.filterSpecieData.append(tempData)
               
             }
                 
@@ -117,37 +151,61 @@ class SearchStarWarsViewModel {
     
     
     
-    func filterTableView(sortType:String , index:Int, text:String)
-    {
-        if (sortType == SelectedSegment.planets.selectedSegmentType) {
-        planetData = planetData.filter({ (data) -> Bool in
-        return data.name.contains(text)
-        })
-        }else if (sortType == SelectedSegment.starships.selectedSegmentType) {
-          
-           spaceshipData = spaceshipData.filter({ (data) -> Bool in
-                 return data.name.contains(text)
-        })
-        }else if (sortType == SelectedSegment.vehicles.selectedSegmentType) {
-           
-            vehicleData = vehicleData.filter({ (data) -> Bool in
-                return data.name.contains(text)
-        })
-        }else if (sortType == SelectedSegment.people.selectedSegmentType) {
-          
-          peopleData = peopleData.filter({ (data) -> Bool in
-             return data.name.contains(text)
-          })
-        }else if (sortType == SelectedSegment.films.selectedSegmentType) {
-        
-            filmData = filmData.filter({ (data) -> Bool in
-                return data.title.contains(text)
-        })
-        }else if (sortType == SelectedSegment.species.selectedSegmentType) {
+    
+     func filterTableView(sortType:SelectedSegment , index:Int, text:String)
+     {
+         if sortType == .planets {
+
+           if text == "" {
+                 planetData = filterPlanetData
+            } else {
+                 planetData = filterPlanetData.filter({ (data) -> Bool in
+                   return data.name.contains(text)
+                })
+            }
+         }else if sortType == .starships {
+             if text == "" {
+                 spaceshipData = filterSpaceshipData
+             } else {
+                 spaceshipData = filterSpaceshipData.filter({ (data) -> Bool in
+                     return data.name.contains(text)
+                 })
+             }
+         }else if sortType == .vehicles {
+             if text == "" {
+                 vehicleData = filterVehicleData
+             } else {
+                 vehicleData = filterVehicleData.filter({ (data) -> Bool in
+                     return data.name.contains(text)
+                 })
+             }
+         }else if sortType == .people {
+             if text == "" {
+                 peopleData = filterPeopleData
+             } else {
+                 peopleData = filterPeopleData.filter({ (data) -> Bool in
+                     return data.name.contains(text)
+                 })
+             }
+             
+         }else if sortType == .films {
+            if text == "" {
+                   filmData = filterFilmData
+            }else{
+                filmData = filterFilmData.filter({ (data) -> Bool in
+                                return data.title.contains(text)
+              })
+            }
             
-            specieData = specieData.filter({ (data) -> Bool in
+            
+         }else if sortType == .species {
+             if text == "" {
+                 specieData =  filterSpecieData
+            } else {
+                specieData = filterSpecieData.filter({ (data) -> Bool in
                 return data.name.contains(text)
-        })
-      }
-   }
+              })
+            }
+         }
+     }
 }
