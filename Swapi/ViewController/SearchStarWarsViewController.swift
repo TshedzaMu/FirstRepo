@@ -50,6 +50,7 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
                     searchStarWarsViewModel.getData(searchType:"planets"){
                     print("planets Successful")
                    self.stopActivityIndicator()
+                    self.starWarsInformationTableView.reloadData()
 
                     }
                 }
@@ -63,6 +64,7 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
                     searchStarWarsViewModel.getData(searchType:"starships"){
                     print("Spaceship Successful")
                     self.stopActivityIndicator()
+                    self.starWarsInformationTableView.reloadData()
                      }
                 }
                 
@@ -75,6 +77,7 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
                     searchStarWarsViewModel.getData(searchType:"vehicles"){
                     print("Vehicle Successful")
                     self.stopActivityIndicator()
+                    self.starWarsInformationTableView.reloadData()
                     }
                 }
                 
@@ -87,19 +90,21 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
                     searchStarWarsViewModel.getData(searchType:"people"){
                     print("People Successful")
                     self.stopActivityIndicator()
+                    self.starWarsInformationTableView.reloadData()
                    }
                 }
                 
             case .films:
                 
                 if searchStarWarsViewModel.filmData.count > 0 {
-                         self.starWarsInformationTableView.reloadData()
+                    self.starWarsInformationTableView.reloadData()
                     
                 }else{
                     startActivityIndicator()
                     searchStarWarsViewModel.getData(searchType:"films"){
                     print("film Successful")
                     self.stopActivityIndicator()
+                    self.starWarsInformationTableView.reloadData()
                      }
                 }
                 
