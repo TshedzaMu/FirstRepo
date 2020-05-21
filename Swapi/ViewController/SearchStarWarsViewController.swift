@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate {
 
     
@@ -141,9 +140,9 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
    return noOfRows
 }
     
-    
-      
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+ 
     
   if let numberOfRows = SelectedSegment(rawValue: searchSegment.selectedSegmentIndex){
      switch numberOfRows {
@@ -156,6 +155,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
             cell.planetClimateLabel.text = "Cliamte: " + searchStarWarsViewModel.planetData[indexPath.row].diameter
             cell.planetPopulationLabel.text = "Population: " + searchStarWarsViewModel.planetData[indexPath.row].population
         
+      
          return cell
         
         case .starships:
@@ -246,10 +246,10 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
      return CGFloat(cellHeight)
 }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
-    {
+func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
+{
         searchBar.resignFirstResponder()
-    }
+}
     
 func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
 {
@@ -261,45 +261,38 @@ func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     
                 startActivityIndicator()
                 searchStarWarsViewModel.getData(searchType:SelectedSegment.planets.selectedSegmentType){
-                self.stopActivityIndicator()
-                self.starWarsInformationTableView.reloadData()
+                self.reloadTabelViewWithData()
                 }
                                 
            case .starships:
                                
                 startActivityIndicator()
                 searchStarWarsViewModel.getData(searchType:SelectedSegment.starships.selectedSegmentType){
-                self.stopActivityIndicator()
-                self.starWarsInformationTableView.reloadData()
+                 self.reloadTabelViewWithData()
                 }
                        
              case .vehicles:
                 startActivityIndicator()
                 searchStarWarsViewModel.getData(searchType:SelectedSegment.vehicles.selectedSegmentType){
-                self.stopActivityIndicator()
-                self.starWarsInformationTableView.reloadData()
+                 self.reloadTabelViewWithData()
                 }
                        
             case .people:
                 startActivityIndicator()
                 searchStarWarsViewModel.getData(searchType:SelectedSegment.people.selectedSegmentType){
-                self.stopActivityIndicator()
-                self.starWarsInformationTableView.reloadData()
+                 self.reloadTabelViewWithData()
                 }
                        
             case .films:
                 startActivityIndicator()
                 searchStarWarsViewModel.getData(searchType:SelectedSegment.films.selectedSegmentType){
-                self.stopActivityIndicator()
-                self.starWarsInformationTableView.reloadData()
+                self.reloadTabelViewWithData()
                 }
-                       
                        
             case .species:
                 startActivityIndicator()
                 searchStarWarsViewModel.getData(searchType:SelectedSegment.species.selectedSegmentType){
-                self.stopActivityIndicator()
-                self.starWarsInformationTableView.reloadData()
+                self.reloadTabelViewWithData()
                 }
             }
         }
@@ -332,13 +325,9 @@ func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
                 case .species:
                     searchStarWarsViewModel.filterTableView(sortType: SelectedSegment.species.selectedSegmentType, index: searchBar.selectedScopeButtonIndex, text: searchText)
                 self.starWarsInformationTableView.reloadData()
-                 
-                     
                 }
             }
-
         }
     }
-    
 }
 

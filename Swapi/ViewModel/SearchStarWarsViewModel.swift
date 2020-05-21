@@ -113,7 +113,7 @@ class SearchStarWarsViewModel {
        }
      }
    }.resume()
-  }
+}
     
     
     
@@ -148,8 +148,6 @@ class SearchStarWarsViewModel {
             specieData = specieData.filter({ (data) -> Bool in
                 return data.name.contains(text)
         })
-    
       }
-        
-    }
+   }
 }
