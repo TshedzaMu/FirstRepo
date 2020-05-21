@@ -43,7 +43,7 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
     if let segmentSelected = SelectedSegment(rawValue: searchSegment.selectedSegmentIndex){
         switch segmentSelected {
             case .planets:
-                if  searchStarWarsViewModel.planetData != nil{
+                if  searchStarWarsViewModel.planetData.count > 0 {
                 self.starWarsInformationTableView.reloadData()
                 }else {
                     startActivityIndicator()
@@ -55,45 +55,65 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
                 }
                          
             case .starships:
-                        
-                 startActivityIndicator()
-                  searchStarWarsViewModel.getData(searchType:"starships"){
-                  print("Spaceship Successful")
-                  self.stopActivityIndicator()
-                  self.starWarsInformationTableView.reloadData()
+                
+                if searchStarWarsViewModel.spaceshipData.count > 0 {
+                     self.starWarsInformationTableView.reloadData()
+                }else{
+                    startActivityIndicator()
+                    searchStarWarsViewModel.getData(searchType:"starships"){
+                    print("Spaceship Successful")
+                    self.stopActivityIndicator()
+                     }
                 }
                 
             case .vehicles:
-                  startActivityIndicator()
-                  searchStarWarsViewModel.getData(searchType:"vehicles"){
-                  print("Vehicle Successful")
-                  self.stopActivityIndicator()
-                  self.starWarsInformationTableView.reloadData()
+                
+                if searchStarWarsViewModel.vehicleData.count > 0 {
+                     self.starWarsInformationTableView.reloadData()
+                }else{
+                    startActivityIndicator()
+                    searchStarWarsViewModel.getData(searchType:"vehicles"){
+                    print("Vehicle Successful")
+                    self.stopActivityIndicator()
+                    }
                 }
                 
             case .people:
-                  startActivityIndicator()
-                  searchStarWarsViewModel.getData(searchType:"people"){
-                  print("People Successful")
-                  self.stopActivityIndicator()
-                  self.starWarsInformationTableView.reloadData()
+                
+                if searchStarWarsViewModel.peopleData.count > 0 {
+                    self.starWarsInformationTableView.reloadData()
+                }else{
+                    startActivityIndicator()
+                    searchStarWarsViewModel.getData(searchType:"people"){
+                    print("People Successful")
+                    self.stopActivityIndicator()
+                   }
                 }
                 
             case .films:
-                 startActivityIndicator()
-                 searchStarWarsViewModel.getData(searchType:"films"){
-                 print("film Successful")
-                 self.stopActivityIndicator()
-                 self.starWarsInformationTableView.reloadData()
+                
+                if searchStarWarsViewModel.filmData.count > 0 {
+                         self.starWarsInformationTableView.reloadData()
+                    
+                }else{
+                    startActivityIndicator()
+                    searchStarWarsViewModel.getData(searchType:"films"){
+                    print("film Successful")
+                    self.stopActivityIndicator()
+                     }
                 }
                 
                 
             case .species:
-                 startActivityIndicator()
-                 searchStarWarsViewModel.getData(searchType:"species"){
-                 print("Species Successful")
-                 self.stopActivityIndicator()
-                self.starWarsInformationTableView.reloadData()
+                
+                if searchStarWarsViewModel.specieData.count > 0 {
+                    self.starWarsInformationTableView.reloadData()
+                }else{
+                     startActivityIndicator()
+                     searchStarWarsViewModel.getData(searchType:"species"){
+                     print("Species Successful")
+                     self.stopActivityIndicator()
+                     }
                 }
             }
         }
@@ -188,6 +208,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
                 cell.movieIdLabel.text = "Film number: \(searchStarWarsViewModel.filmData[indexPath.row].episode_id)"
                 cell.movieDirectorNameLabel.text = "Director: " + searchStarWarsViewModel.filmData[indexPath.row].director
                 cell.movieProducerNameLabel.text = "Producer: " + searchStarWarsViewModel.filmData[indexPath.row].producer
+                cell.releasedateLabel.text = "Release date: " + searchStarWarsViewModel.filmData[indexPath.row].release_date
           return cell
         
             
@@ -309,7 +330,7 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
                 self.starWarsInformationTableView.reloadData()
              
                 case .vehicles:
-                 searchStarWarsViewModel.filterTableView(sortType: "vehicless", index: searchBar.selectedScopeButtonIndex, text: searchText)
+                 searchStarWarsViewModel.filterTableView(sortType: "vehicles", index: searchBar.selectedScopeButtonIndex, text: searchText)
                 self.starWarsInformationTableView.reloadData()
                   
                 case .people:

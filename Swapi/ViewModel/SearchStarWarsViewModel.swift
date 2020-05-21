@@ -95,7 +95,8 @@ class SearchStarWarsViewModel {
             let filmEpisodeId = jsonDetailData["episode_id"] as! Int
             let filmDirector = jsonDetailData["director"] as! String
             let filmProducer = jsonDetailData["producer"] as! String
-            let tempData = FilmData(title: filmTiltle, episode_id:filmEpisodeId, director: filmDirector, producer: filmProducer)
+            let filmReleaseDate = jsonDetailData["release_date"] as! String
+            let tempData = FilmData(title: filmTiltle, episode_id:filmEpisodeId, director: filmDirector, producer: filmProducer,release_date: filmReleaseDate)
                 self.filmData.append(tempData)
                 print("Film tempdata",tempData)
                 
@@ -147,13 +148,19 @@ class SearchStarWarsViewModel {
         }else if (sortType == "people"){
           
           peopleData = peopleData.filter({ (data) -> Bool in
-          return data.name.contains(text)
+             return data.name.contains(text)
           })
                 
         }else if (sortType == "films"){
         
             filmData = filmData.filter({ (data) -> Bool in
                 return data.title.contains(text)
+        })
+            
+        }else if (sortType == "species"){
+            
+            specieData = specieData.filter({ (data) -> Bool in
+                return data.name.contains(text)
         })
     
       }

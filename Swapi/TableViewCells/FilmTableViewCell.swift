@@ -14,4 +14,5 @@ class FilmTableViewCell: UITableViewCell {
     @IBOutlet weak var movieIdLabel: UILabel!
     @IBOutlet weak var movieDirectorNameLabel: UILabel!
     @IBOutlet weak var movieProducerNameLabel: UILabel!
+    @IBOutlet weak var releasedateLabel: UILabel!
 }
