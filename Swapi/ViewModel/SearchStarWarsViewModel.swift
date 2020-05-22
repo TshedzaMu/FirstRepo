@@ -44,27 +44,7 @@ class SearchStarWarsViewModel {
          for jsonDetailData in userDataArr {
             DispatchQueue.main.async {
                 completed()
-                
-//               switch searchType {
-//
-//                case .planets:
-//
-//                 case .starships:
-//
-//                 case .vehicles:
-//
-//                 case .people:
-//
-//                 case .films:
-//
-//                 case .species:
-//
-//
-//                }
-                
-                
-                
-                
+            
         if (searchType == SelectedSegment.planets.selectedSegmentType){
                                             
             let planetName = jsonDetailData["name"] as! String
@@ -135,14 +115,13 @@ class SearchStarWarsViewModel {
             let tempData = SpecieData(name: specieName, classification: classification, designation: designation, average_height: average_height, language: language)
                 self.specieData.append(tempData)
                self.filterSpecieData.append(tempData)
-              
             }
                 
           }
 
-       }
+        }
 
-       }catch {
+       } catch {
         print(error)
        }
      }
@@ -150,10 +129,8 @@ class SearchStarWarsViewModel {
 }
     
     
-    
-    
-     func filterTableView(sortType:SelectedSegment , index:Int, text:String)
-     {
+func filterTableView(sortType:SelectedSegment , index:Int, text:String)
+{
          if sortType == .planets {
 
            if text == "" {
@@ -168,7 +145,7 @@ class SearchStarWarsViewModel {
                  spaceshipData = filterSpaceshipData
              } else {
                  spaceshipData = filterSpaceshipData.filter({ (data) -> Bool in
-                     return data.name.contains(text)
+                    return data.name.contains(text)
                  })
              }
          }else if sortType == .vehicles {
@@ -176,7 +153,7 @@ class SearchStarWarsViewModel {
                  vehicleData = filterVehicleData
              } else {
                  vehicleData = filterVehicleData.filter({ (data) -> Bool in
-                     return data.name.contains(text)
+                return data.name.contains(text)
                  })
              }
          }else if sortType == .people {
@@ -184,7 +161,7 @@ class SearchStarWarsViewModel {
                  peopleData = filterPeopleData
              } else {
                  peopleData = filterPeopleData.filter({ (data) -> Bool in
-                     return data.name.contains(text)
+                return data.name.contains(text)
                  })
              }
              
@@ -193,17 +170,16 @@ class SearchStarWarsViewModel {
                    filmData = filterFilmData
             }else{
                 filmData = filterFilmData.filter({ (data) -> Bool in
-                                return data.title.contains(text)
+                return data.title.contains(text)
               })
             }
-            
             
          }else if sortType == .species {
              if text == "" {
                  specieData =  filterSpecieData
             } else {
                 specieData = filterSpecieData.filter({ (data) -> Bool in
-                return data.name.contains(text)
+                    return data.name.contains(text)
               })
             }
          }
