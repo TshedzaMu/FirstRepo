@@ -8,29 +8,29 @@
 
 import Foundation
 
-struct PlanetData: Codable{
+struct PlanetData {
     
-    var  name: String
-    var  rotation_Period: String
-    var  diameter: String
+    var name: String
+    var rotationPeriod: String
+    var diameter: String
     var climate: String
     var population: String
 }
 
-struct SpaceshipData: Codable{
+struct SpaceshipData {
     
     var name: String
     var manufucturer: String
     var crew: String
     var passengers: String
-    var cargo_capacity :String
+    var cargoCapacity :String
 }
 
-struct VehicleData: Codable{
+struct VehicleData {
     var name:String
     var model:String
     var manufucturer:String
-    var cost_in_credits:String
+    var costInCredits:String
     var crew:String
 }
 
@@ -44,19 +44,19 @@ struct PeopleData{
     var birthYear:String
 }
 
-struct SpecieData:Codable {
+struct SpecieData {
     var name:String
     var classification:String
     var designation:String
-    var average_height:String
+    var averageHeight:String
     var language: String
 }
 
-struct FilmData:Codable {
+struct FilmData {
     var title:String
-    var episode_id:Int
+    var episodeId:Int
     var director:String
     var producer:String
-    var release_date:String
+    var releaseDate:String
 }
 
