@@ -30,7 +30,6 @@ class SearchStarWarsViewModel {
         
         let baseUrl = "https://swapi.dev/api/"
         let urlString = baseUrl + searchType.selectedSegmentType
-        //  let urlString = baseUrl + searchType
         let url = URL(string: urlString)
         let sessionCongfig = URLSession.shared
         let _: Void = sessionCongfig.dataTask(with: url!) { (data, response, error) in
