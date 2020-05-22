@@ -15,6 +15,4 @@ class VehicleTableViewCell: UITableViewCell {
      @IBOutlet weak var vehicleModelLabel: UILabel!
      @IBOutlet weak var vehicleCostLabel: UILabel!
      @IBOutlet weak var vehicleNumberOfCrewLabel: UILabel!
-    
-    
 }

@@ -16,9 +16,7 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
       @IBOutlet weak var starWarsInformationTableView: UITableView!
     
       @IBOutlet weak var searchSegment: UISegmentedControl!
-    
 
-    lazy var informationToDisplay = 0
     
     override func viewDidLoad() {
            super.viewDidLoad()
@@ -27,7 +25,7 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
            starWarsInformationTableView.dataSource = self
         
            startActivityIndicator()
-           searchStarWarsViewModel.getData(searchType:"planets"){
+           searchStarWarsViewModel.getData(searchType:"planets") {
            self.reloadTabelViewWithData()
         
             }
@@ -35,7 +33,7 @@ class SearchStarWarsViewController: UIViewController, UITableViewDataSource,UITa
 
     
 @IBAction func searchSegmentValueChanged(_ sender: UISegmentedControl) {
-   if let segmentSelected = SelectedSegment(rawValue: searchSegment.selectedSegmentIndex){
+   if let segmentSelected = SelectedSegment(rawValue: searchSegment.selectedSegmentIndex) {
     switch segmentSelected {
         case .planets:
             if  searchStarWarsViewModel.planetData.count > 0 {
@@ -149,7 +147,6 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
             cell.planetDiameterLabel.text = "Diameter: " + searchStarWarsViewModel.planetData[indexPath.row].rotation_Period
             cell.planetClimateLabel.text = "Cliamte: " + searchStarWarsViewModel.planetData[indexPath.row].diameter
             cell.planetPopulationLabel.text = "Population: " + searchStarWarsViewModel.planetData[indexPath.row].population
-        
       
          return cell
         
@@ -178,7 +175,6 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
             return cell
         
             
-           
         case .people:
         
             let cell = tableView.dequeueReusableCell(withIdentifier: "CID_PeopleCell", for: indexPath) as! PeopleTableViewCell
@@ -201,7 +197,6 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
           return cell
         
             
-                 
         case .species:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CID_SpecieCell", for: indexPath) as! SpecieTableViewCell
                 cell.specieNameLabel.text = "Name: " + searchStarWarsViewModel.specieData[indexPath.row].name
@@ -219,7 +214,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 
 func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
 {
-    let cellHeight = 140.0
+    let cellHeight = 150.0
     return CGFloat(cellHeight)}
     
   

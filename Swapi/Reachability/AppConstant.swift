@@ -17,11 +17,10 @@ enum SelectedSegment:Int {
     case films
     case species
     
-    var selectedSegmentType: String{
+    var selectedSegmentType: String {
         get {return String(describing: self)}
     }
 }
-
 
 let ACTIVITY_INDICATOR_TAG = 001
 

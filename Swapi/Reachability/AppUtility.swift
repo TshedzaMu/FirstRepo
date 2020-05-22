@@ -10,27 +10,23 @@ import Foundation
 import UIKit
 
 class AppUtility{
-    
-    
 }
-
 
 extension UIViewController
 {
        
-func startActivityIndicator(){
+func startActivityIndicator() {
       let loc =  self.view.center
-    let activityIndicator = UIActivityIndicatorView(style: .large)
+      let activityIndicator = UIActivityIndicatorView(style: .large)
       activityIndicator.tag = ACTIVITY_INDICATOR_TAG
       activityIndicator.center = loc
       activityIndicator.hidesWhenStopped = true
             
       activityIndicator.startAnimating()
       self.view.addSubview(activityIndicator)
-    }
+}
         
-func stopActivityIndicator()
-    {
+func stopActivityIndicator() {
       if let activityIndicator = self.view.subviews.filter(
       { $0.tag == ACTIVITY_INDICATOR_TAG}).first as? UIActivityIndicatorView {
         activityIndicator.stopAnimating()

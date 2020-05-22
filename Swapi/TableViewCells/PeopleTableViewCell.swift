@@ -15,7 +15,4 @@ class PeopleTableViewCell: UITableViewCell {
     @IBOutlet weak var peopleMassLabel: UILabel!
     @IBOutlet weak var peopleGenderLabel: UILabel!
     @IBOutlet weak var peopleNirthyearLabel: UILabel!
-    
-    
-    
 }
